@@ -40,7 +40,7 @@
 												<core:Item key="internet" text="Internet"/>
 											</ComboBox> -->
 											<VBox id="idStopWatchVBox"/>
-											<Button text="droid toast" press="droidPress"/>
+											<!-- <Button text="droid toast" press="droidPress"/> -->
 										</VBox>
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Enter Manually">
