@@ -19,7 +19,13 @@
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category"/>
-											<ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName" selectedKey="null">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" class="sapUiMediumMarginBottom">
+												<RadioButton id="academic" text="Academic" />
+												<RadioButton id="maintenance" text="Maintenance"/>
+												<RadioButton id="building" text="Building Use" />
+												<RadioButton id="other" text="Other" />
+											</RadioButtonGroup>
+											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName" selectedKey="null">
 												<core:Item key="sleep" text="Sleep"/>
 												<core:Item key="transport" text="Transport"/>
 												<core:Item key="sport" text="Sport"/>
@@ -32,7 +38,7 @@
 												<core:Item key="read" text="Read"/>
 												<core:Item key="movie" text="Movie"/>
 												<core:Item key="internet" text="Internet"/>
-											</ComboBox>
+											</ComboBox> -->
 											<VBox id="idStopWatchVBox"/>
 											<Button text="droid toast" press="droidPress"/>
 										</VBox>

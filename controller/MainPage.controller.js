@@ -34,7 +34,8 @@ sap.ui.define([
 
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
-			var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
+			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
+			var idCategoryName = categoryComboBox.getSelectedButton().getText()
 			var model = new sap.ui.model.json.JSONModel({
 				timer: 0,
 				start: false,
@@ -205,7 +206,7 @@ sap.ui.define([
 				actions: [MessageBox.Action.OK],
 				emphasizedAction: MessageBox.Action.OK,
 				onClose: function (sAction) {
-					MessageToast.show("Action selected: " + sAction);
+					// MessageToast.show("Action selected: " + sAction);
 					if(sAction === "OK")
 					{
 							//
