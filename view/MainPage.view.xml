@@ -1,0 +1,97 @@
+<mvc:View controllerName="ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" class="sapUiSizeCompact" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:ux="sap.uxap" xmlns:core="sap.ui.core"
+	xmlns:ui="sap.ui.table" xmlns:m="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:card="sap.f.cards"
+	xmlns:tnt="sap.tnt" xmlns:dnd="sap.ui.core.dnd">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" showHeader="true" title="{i18n>title}">
+					<content>
+						<VBox>
+							<ObjectHeader icon="sap-icon://customer" iconDensityAware="false" iconAlt="Medha Karri" imageShape="Circle"
+								responsive="true" title="Medha Karri" intro="Student - Year 1" class="sapUiResponsivePadding--header">
+								<ObjectAttribute title="Email address" text="karri.15@wright.edu" active="true"/>
+								<!--<ObjectAttribute title="Office Phone" text="+1 937 626 8019"/>-->
+								<!--<ObjectAttribute title="Functional Area" text="Development"/>-->
+							</ObjectHeader>
+							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+								<items>
+									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
+										<VBox class="sapUiSmallMargin">
+											<Title text="Choose an activity/category"/>
+											<ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName" selectedKey="null">
+												<core:Item key="sleep" text="Sleep"/>
+												<core:Item key="transport" text="Transport"/>
+												<core:Item key="sport" text="Sport"/>
+												<core:Item key="eat" text="Eating"/>
+												<core:Item key="shop" text="Shopping"/>
+												<core:Item key="housework" text="Housework"/>
+												<core:Item key="walk" text="Work"/>
+												<core:Item key="study" text="Study"/>
+												<core:Item key="entertainment" text="Entertainment"/>
+												<core:Item key="read" text="Read"/>
+												<core:Item key="movie" text="Movie"/>
+												<core:Item key="internet" text="Internet"/>
+											</ComboBox>
+											<VBox id="idStopWatchVBox"/>
+											<Button text="droid toast" press="droidPress"/>
+										</VBox>
+									</IconTabFilter>
+									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Enter Manually">
+										<VBox class="sapUiSmallMargin" alignContent="Center">
+											<Title text="Choose a day"/>
+											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
+											<Title text="Choose a category"/>
+											<ComboBox class="sapUiTinyMargin" required="true">
+												<core:Item key="sleep" text="Sleep"/>
+												<core:Item key="transport" text="Transport"/>
+												<core:Item key="sport" text="Sport"/>
+												<core:Item key="eat" text="Eating"/>
+												<core:Item key="shop" text="Shopping"/>
+												<core:Item key="housework" text="Housework"/>
+												<core:Item key="walk" text="Work"/>
+												<core:Item key="study" text="Study"/>
+												<core:Item key="entertainment" text="Entertainment"/>
+												<core:Item key="read" text="Read"/>
+												<core:Item key="movie" text="Movie"/>
+												<core:Item key="internet" text="Internet"/>
+											</ComboBox>
+											<Title text="Enter time"/>
+											<TimePicker id="idTimeIn" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
+												placeholder="Time in"/>
+											<TimePicker id="idTimeOut" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
+												placeholder="Time out"/>
+											<ObjectNumber id="idHoursLogged" class="sapUiTinyMargin sapMObjectNumberLarge" number="" state="Success" unit=""/>
+											<m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/>
+											<Title text="Entries for the day"/>
+											<List binding="" class="sapUiTinyMargin" mode="Delete">
+												<StandardListItem title="App Development" description="12:00AM to 2:10AM" counter="2" infoState="Information"/>
+											</List>
+											<Bar>
+												<contentRight>
+													<Button text="Save Timesheet" type="Accept"/>
+												</contentRight>
+											</Bar>
+										</VBox>
+									</IconTabFilter>
+									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Stats">
+										<VBox class="sapUiSmallMargin" alignContent="Center">
+											<Title text="Choose a day"/>
+										</VBox>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</VBox>
+					</content>
+					<!--			<footer>-->
+					<!--	<OverflowToolbar>-->
+					<!--		<ToolbarSpacer/>-->
+					<!--		<Button text="Save" type="Accept" />-->
+					<!--		<Button text="Delete" />-->
+					<!--	</OverflowToolbar>-->
+					<!--</footer>-->
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
