@@ -14,6 +14,7 @@ sap.ui.define([
 	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {
 		
 		onInit: function () {
+			this.byId("idCategoryName").setSelectedIndex(null); 
 		},
 		handleTimeChange: function (oEvent) {
 			this.CalcTimeDiff();

@@ -19,13 +19,13 @@
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category"/>
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" class="sapUiMediumMarginBottom">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" selectedIndex="1" columns="2" class="sapUiMediumMarginBottom">
 												<RadioButton id="academic" text="Academic" />
 												<RadioButton id="maintenance" text="Maintenance"/>
 												<RadioButton id="building" text="Building Use" />
 												<RadioButton id="other" text="Other" />
 											</RadioButtonGroup>
-											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName" selectedKey="null">
+											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName2" selectedKey="null">
 												<core:Item key="sleep" text="Sleep"/>
 												<core:Item key="transport" text="Transport"/>
 												<core:Item key="sport" text="Sport"/>
