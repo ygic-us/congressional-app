@@ -37,7 +37,7 @@ sap.ui.define([
 			var categoryComboBox = this.byId("idCategoryName");
 			if(idStopWatchVBox.getItems().length > 0)
 			{
-				MessageBox.information("You can't have more than one time logger.");
+				MessageBox.information("You can have only one timer at a time.");
 				return;
 			}
 			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
