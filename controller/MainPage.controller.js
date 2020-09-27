@@ -32,9 +32,14 @@ sap.ui.define([
 			}
 		},
 		categoryChanged: function (oEvent) {
-			noSleep.enable();
+			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
+			if(idStopWatchVBox.items.length > 0)
+			{
+				MessageBox.information("You can't have more than one time logger.");
+				return;
+			}
 			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
 			var idCategoryName = categoryComboBox.getSelectedButton().getText()
 			var model = new sap.ui.model.json.JSONModel({
