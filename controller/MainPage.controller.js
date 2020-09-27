@@ -32,7 +32,7 @@ sap.ui.define([
 			}
 		},
 		categoryChanged: function (oEvent) {
-
+			noSleep.enable();
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
 			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
@@ -40,12 +40,22 @@ sap.ui.define([
 			var model = new sap.ui.model.json.JSONModel({
 				timer: 0,
 				start: false,
+				startedAt: new Date(),
 				title: idCategoryName
 			});
-			var timer = null;
-
+			var timer = null;			
+			model.setProperty('/start', true);
+			timer = setInterval(function () {										
+				var startedAt = new Date(model.getProperty('/startedAt'));
+				var diffInMilliSecs = new Date() - startedAt;
+				var diffInSecs = Math.floor(diffInMilliSecs/1000);														
+				model.setProperty('/timer', diffInSecs);
+			}, 1000);
 			var vbox = new sap.m.VBox({
 				items: [
+					new sap.m.Text({
+						text: 'Started at ' + new Date().toTimeString().substring(0,5),
+					}),
 					new sap.m.Text({
 						text: '{/title}'
 					}).addStyleClass('timerFaceTitle'),
@@ -54,7 +64,7 @@ sap.ui.define([
 							new sap.m.Text({
 								text: {
 									path: '/timer',
-									formatter: function (t) {
+									formatter: function (t) {																				
 										var v = Math.floor((t / 60) / 60);
 										return (v < 10) ? '0' + v : v;
 									}
@@ -75,7 +85,7 @@ sap.ui.define([
 							new sap.m.Text({
 								text: {
 									path: '/timer',
-									formatter: function (t) {
+									formatter: function (t) {										
 										var v = t % 60;
 										return (v < 10) ? '0' + v : v;
 									}
@@ -98,14 +108,17 @@ sap.ui.define([
 								press: function () {
 									var m = this.getModel();
 									m.setProperty('/start', true);
-									timer = setInterval(function () {
-										m.setProperty('/timer', m.getProperty('/timer') + 1);
+									timer = setInterval(function () {										
+										var startedAt = new Date(m.getProperty('/startedAt'));
+										var diffInMilliSecs = new Date() - startedAt;
+										var diffInSecs = Math.floor(diffInMilliSecs/1000);																				
+										m.setProperty('/timer', diffInSecs);
 									}, 1000);
 								}
 							}).addStyleClass('timerButton'),
 							new sap.m.Button({
-								icon: 'sap-icon://media-pause',
-								tooltip: 'Pause/Stop',
+								icon: 'sap-icon://stop',
+								tooltip: 'Stop',
 								width: '45px',
 								enabled: '{/start}',
 								press: function () {
@@ -196,7 +209,7 @@ sap.ui.define([
 						if (timeInSecs == 0) {
 							if (!this.oErrorMessageDialog) {
 								oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
-								categoryComboBox.setSelectedItem(null);
+								categoryComboBox.setSelectedIndex(null); 							
 							}
 						}
 						else
@@ -218,7 +231,7 @@ sap.ui.define([
 
 					}
 
-				})]}).addStyleClass("sapUiTinyMargin");
+				}).addStyleClass("sapUiTinyMargin")]}).addStyleClass("sapUiTinyMargin");
 			hbox.setModel(model);
 			idStopWatchVBox.addItem(hbox);
 		},
