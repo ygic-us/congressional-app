@@ -70,11 +70,11 @@
 											</ComboBox> -->
 											<Title text="Enter time"/>
 											<TimePicker id="idTimeIn" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
-												placeholder="Time in"/>
+												placeholder="Start Time"/>
 											<TimePicker id="idTimeOut" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
-												placeholder="Time out"/>
+												placeholder="End Time"/>
 											<ObjectNumber id="idHoursLogged" class="sapUiTinyMargin sapMObjectNumberLarge" number="" state="Success" unit=""/>
-											<Button text="Save this entry" class="sapUiTinyMargin" type="Accept"/>
+											<Button text="Save this entry" press="saveTimeEntry" class="sapUiTinyMargin" type="Accept"/>
 											<!-- <m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/> -->
 											<!-- <Title text="Entries for the day"/>
 											<List binding="" class="sapUiTinyMargin" mode="Delete">

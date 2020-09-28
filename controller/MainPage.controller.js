@@ -31,6 +31,36 @@ sap.ui.define([
 				this.byId("idHoursLogged").setNumber(diff);
 			}
 		},
+		saveTimeEntry : function(oEvent)
+		{
+			
+
+			if(this.byId("calendar").getSelectedDates().length == 0)
+			{
+				MessageBox.information("Please choose a date in the calendar");
+				return;
+			}
+
+			if(this.byId("idTimeIn").getValue() == "" || this.byId("idTimeIn").getValue() == "")
+			{
+				MessageBox.information("Please make sure you have entered both Start and End times ");
+				return;
+			}
+
+			if(this.byId("idHoursLogged").getNumber().toString().includes("-"))
+			{
+				MessageBox.information("This is an invalid time entry. Please correct your time.");
+				return;
+			}
+
+			if(this.byId("calendar").getSelectedDates()[0].getStartDate() > new Date())
+			{
+				MessageBox.information("You can't enter for future dates");
+				return;
+			}
+
+
+		},
 		categoryChanged: function (oEvent) {
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
