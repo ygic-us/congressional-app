@@ -16,6 +16,11 @@ sap.ui.define([
 		onInit: function () {
 			this.byId("idCategoryName").setSelectedIndex(null); 
 		},
+		loginPress: function(oEvent)
+		{
+
+		},
+		
 		handleTimeChange: function (oEvent) {
 			this.CalcTimeDiff();
 		},

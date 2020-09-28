@@ -6,14 +6,12 @@
 		<App id="app">
 			<pages>
 				<Page id="page" showHeader="true" title="{i18n>title}">
+				<headerContent>
+			<Button icon="sap-icon://begin" tooltip="Login" text="Login" press="loginPress"/>
+		</headerContent>
 					<content>
 						<VBox>
-							<ObjectHeader icon="sap-icon://customer" iconDensityAware="false" iconAlt="Medha Karri" imageShape="Circle"
-								responsive="true" title="Medha Karri" intro="Student - Year 1" class="sapUiResponsivePadding--header">
-								<ObjectAttribute title="Email address" text="karri.15@wright.edu" active="true"/>
-								<!--<ObjectAttribute title="Office Phone" text="+1 937 626 8019"/>-->
-								<!--<ObjectAttribute title="Functional Area" text="Development"/>-->
-							</ObjectHeader>
+							
 							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 								<items>
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
