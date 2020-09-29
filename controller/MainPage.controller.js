@@ -94,7 +94,7 @@ sap.ui.define([
 			if(idStopWatchVBox.getItems().length > 0)
 			{
 				MessageBox.information("You can have only one timer at a time.");
-				return;
+				return; 
 			}
 			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
 			var idCategoryName = categoryComboBox.getSelectedButton().getText()
