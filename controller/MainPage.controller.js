@@ -7,18 +7,39 @@ sap.ui.define([
 	"sap/m/ButtonType",
 	"sap/m/Text",
 	"sap/m/MessageBox",
-	"sap/m/MessageToast"
-], function (Controller, ValueState, Dialog, DialogType, Button, ButtonType, Text,MessageBox,MessageToast) {
+	"sap/m/MessageToast",
+	'sap/ui/model/json/JSONModel',	
+], function (Controller, ValueState, Dialog, DialogType, Button, ButtonType, Text,MessageBox,MessageToast,JSONModel) {
 	"use strict";
 
 	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {
 		
 		onInit: function () {
 			this.byId("idCategoryName").setSelectedIndex(null); 
+
+			this.loadEntries();
+		},
+		loadEntries: function () {			
+			var oView = this.getView();
+			this.oProductsModel = this.initSampleProductsModel();
+			oView.setModel(this.oProductsModel);
+		},
+		initSampleProductsModel: function () {
+			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
+			var oData = jQuery.sap.sjax({
+				url: sPath,
+				dataType: "json"
+			}).data;
+		
+
+			var oModel = new JSONModel();
+			oModel.setData(oData);
+			return oModel;
 		},
 		loginPress: function(oEvent)
 		{
-
+			//authRedirect.signIn();
+			signIn();
 		},
 		
 		handleTimeChange: function (oEvent) {
@@ -92,13 +113,15 @@ sap.ui.define([
 				model.setProperty('/timer', diffInSecs);
 			}, 1000);
 			var vbox = new sap.m.VBox({
-				items: [
-					new sap.m.Text({
-						text: 'Started at ' + new Date().toTimeString().substring(0,5),
-					}),
-					new sap.m.Text({
-						text: '{/title}'
-					}).addStyleClass('timerFaceTitle'),
+				alignItems: "Start",
+				items: [									
+					new sap.m.ObjectStatus({text: '{/title}', state:'Indication06',active:true,inverted:true }),
+					new sap.m.Label({
+						text: { path: '/startedAt', 
+						formatter: function(t){ 
+							return 'Started at ' + new Date(t).toTimeString().substring(0,5)
+						}}, 
+						design:"Bold"}),
 					new sap.m.HBox({
 						items: [
 							new sap.m.Text({
@@ -130,112 +153,40 @@ sap.ui.define([
 										return (v < 10) ? '0' + v : v;
 									}
 								}
-							}).addStyleClass('timerFace')
-						]
-					}),
-					new sap.m.HBox({
-						items: [
-							new sap.m.Button({
-								icon: 'sap-icon://media-play',
-								width: '45px',
-								tooltip: 'Start',
-								enabled: {
-									path: '/start',
-									formatter: function (s) {
-										return !s;
-									}
-								},
-								press: function () {
-									var m = this.getModel();
-									m.setProperty('/start', true);
-									timer = setInterval(function () {										
-										var startedAt = new Date(m.getProperty('/startedAt'));
-										var diffInMilliSecs = new Date() - startedAt;
-										var diffInSecs = Math.floor(diffInMilliSecs/1000);																				
-										m.setProperty('/timer', diffInSecs);
-									}, 1000);
-								}
-							}).addStyleClass('timerButton'),
-							new sap.m.Button({
-								icon: 'sap-icon://stop',
-								tooltip: 'Stop',
-								width: '45px',
-								enabled: '{/start}',
-								press: function () {
-									clearInterval(timer);
-									timer = null;
-									var m = this.getModel();
-									m.setProperty('/start', false);
-								}
-							}).addStyleClass('timerButton'),
-							new sap.m.Button({
-								icon: 'sap-icon://reset',
-								tooltip: 'Reset',
-								width: '45px',
-								press: function () {
-									if (timer) {
-										clearInterval(timer);
-										timer = null;
-									}
-									var m = this.getModel();
-									m.setProperty('/start', false);
-									m.setProperty('/timer', 0);
-								}
-							}).addStyleClass('timerButton')
+							}).addStyleClass('timerFace')							
 						]
 					})
 				]
-			}).addStyleClass('timerCase');
+			}).addStyleClass("sapUiTinyMargin")
 			//vbox.setModel(model);
 			var hbox = new sap.m.HBox({
-				alignItems: "Center",
-				items: [vbox, 
-				new sap.m.Button({
-					text: "Save",
-					type: "Accept",
-					icon: "sap-icon://save",
-					enabled: {
-						path: '/start',
-						formatter: function (s) {
-							return !s;
+				alignItems: "Stretch",
+				items: [vbox,
+					new sap.m.Button({
+						icon: 'sap-icon://stop',
+						tooltip: 'Stop and save the timer',
+						text:'Stop & Save',
+						type:'Accept',						
+						enabled: '{/start}',
+						press: function (oEvent) {									
+							clearInterval(timer);
+							timer = null;
+							var m = this.getModel();
+							m.setProperty('/start', false);
+							var startTime = m.getProperty('/startedAt');							
+							var endTime = new Date();							
+							var diff = endTime-startTime							
+							var totalTimeWorked = Math.floor(diff/1000);
+							alert(totalTimeWorked)													
+							oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
+							categoryComboBox.setSelectedIndex(null); 
 						}
-					},
-					press: function () {
-						var m = this.getModel();
-						var timeInSecs = m.getProperty('/timer');
-						if (timeInSecs == 0) {
-							if (!this.oErrorMessageDialog) {
-								this.oErrorMessageDialog = new Dialog({
-									type: DialogType.Message,
-									title: "Error",
-									state: ValueState.Error,
-									content: new Text({
-										text: "You can't log this time as you haven't started it."
-									}),
-									beginButton: new Button({
-										type: ButtonType.Emphasized,
-										text: "OK",
-										press: function () {
-											this.oErrorMessageDialog.close();
-										}.bind(this)
-									})
-								});
-							}
-
-							this.oErrorMessageDialog.open();
-						} else {
-							alert(timeInSecs);
-							//do stuff to save to the cloud
-							//once done reset the timer and destroy the container
-							//{ category : "",}
-						}
-
-					}
-
-				}).addStyleClass("sapUiTinyMargin"),
+					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton')	,				
 				new sap.m.Button({
+					visible:false,
 					iconFirst: true,
 					type: "Reject",
+					text:'Delete',
 					icon: "sap-icon://delete",
 					enabled: {
 						path: '/start',
@@ -246,32 +197,11 @@ sap.ui.define([
 					press: function (oEvent) {
 						var m = this.getModel();
 						var timeInSecs = m.getProperty('/timer');
-						if (timeInSecs == 0) {
-							if (!this.oErrorMessageDialog) {
-								oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
-								categoryComboBox.setSelectedIndex(null); 							
-							}
-						}
-						else
-						{
-							
-							MessageBox.information("You should reset the timer to delete the timer.", {
-				styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer",
-				actions: [MessageBox.Action.OK],
-				emphasizedAction: MessageBox.Action.OK,
-				onClose: function (sAction) {
-					// MessageToast.show("Action selected: " + sAction);
-					if(sAction === "OK")
-					{
-							//
-					}
-				}
-			});
-						}
-
+						oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
+						categoryComboBox.setSelectedIndex(null); 												
 					}
 
-				}).addStyleClass("sapUiTinyMargin")]}).addStyleClass("sapUiTinyMargin");
+				}).addStyleClass('timerButton')]}).addStyleClass("sapUiTinyMargin").addStyleClass('timerCase');;
 			hbox.setModel(model);
 			idStopWatchVBox.addItem(hbox);
 		},

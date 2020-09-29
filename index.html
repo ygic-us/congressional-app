@@ -4,6 +4,27 @@
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>YGIC-Personal-Timelogger</title>
+		<!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
+		<script type="text/javascript" src="https://alcdn.msauth.net/lib/1.4.0/js/msal.js" integrity="sha384-DqrejB/00ccJc4ufFWc+TA3ImOruMihWCj6Wu9hEzRUNdqt4180qlzT0mFa6/Zp2" crossorigin="anonymous"></script>
+  
+		<!-- msal.js with a fallback to backup CDN -->
+		<script type="text/javascript">
+		  if(typeof Msal === 'undefined')document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/lib/1.4.0/js/msal.js' type='text/javascript' %3E%3C/script%3E"));
+		</script>
+	   
+	   <!-- importing app scripts -->
+		<script type="text/javascript" src="./auth/policies.js"></script>
+		<script type="text/javascript" src="./auth/apiConfig.js"></script>
+		<script type="text/javascript" src="./auth/authConfig.js"></script>
+		<script type="text/javascript" src="./auth/ui.js"></script>
+		
+		<!-- replace next line with authRedirect.js if you would like to use the redirect flow -->
+		<!-- <script type="text/javascript" src="./authRedirect.js"></script>   -->
+		<script type="text/javascript" src="./auth/authPopup.js"></script>
+		<script type="text/javascript" src="./auth/api.js"></script>
+
+		<!-- adding Bootstrap 4 for UI components  -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<script id="sap-ui-bootstrap"
 			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
 			data-sap-ui-theme="sap_fiori_3"
@@ -20,6 +41,14 @@
 		</script>
 	</head>
 	<body class="sapUiBody">
+		<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="/">Azure AD B2C</a>
+			<div class="btn-group ml-auto dropleft">
+				<button type="button" id="editProfileButton" class="btn btn-secondary d-none" onclick="editProfile()">Edit Profile</button>
+				<button type="button" id="signIn" class="btn btn-secondary" onclick="signIn()">Sign In</button>
+				<button type="button" id="signOut" class="btn btn-success d-none" onclick="logout()">Sign Out</button>
+			</div>
+		  </nav> -->
 		<div data-sap-ui-component data-name="ygic.timelogger.personal.YGIC-Personal-Timelogger" data-id="container" data-settings='{"id" : "YGIC-Personal-Timelogger"}'></div>
 	</body>
 </html>

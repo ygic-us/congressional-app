@@ -1,0 +1,46 @@
+{
+	"ProductCollection": [
+        {"Date":"09-29-2020",
+            "StartTime":"10:30AM",
+            "EndTime":"11:00AM",
+            "Category":"Other",
+            "TimeInHours":"0.5"},
+        {"Date":"09-29-2020",
+            "StartTime":"11:30AM",
+            "EndTime":"12:30PM",
+            "Category":"Other",
+            "TimeInHours":"1"}
+		],
+	"ProductTypeCollection":[{"name":"worker","description":"","id":1},{"name":"product","description":"","id":2}],
+	"CategoriesCollection" : [
+		{
+			"name" : "Equipment",
+			"description" : "",
+			"id" : 1
+		},
+		{
+			"name" : "Labour",
+			"description" : "",
+			"id" : 2
+		},
+		{
+			"name" : "Material",
+			"description" : "",
+			"id" : 3
+		},
+		{
+			"name" : "PPE",
+			"description" : "",
+			"id" : 4
+		},
+		{
+			"name" : "Misc",
+			"description" : "",
+			"id" : 5
+		}
+		],
+	"EstimateCollection" : [],
+	"AccountsCollection":[
+		]
+}
+

@@ -12,6 +12,9 @@
     border-radius: 4px;
     border: 1px solid #bfbfbf;
 }
+.borderRight {        
+    border-right: 2px solid #ccc;    
+}
 
 .timerFaceTitle2 {
     margin: 1px;
@@ -60,7 +63,7 @@
 	margin: 2px 2px 2px 2px;
     align-items: center;
     border: 2px solid #ccc;
-    width: 180px;
+    width: 300px;
     padding: 4px;
     background-color: transparent;
     border-radius: 8px;

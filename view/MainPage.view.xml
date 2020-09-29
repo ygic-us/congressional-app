@@ -7,17 +7,16 @@
 			<pages>
 				<Page id="page" showHeader="true" title="{i18n>title}">
 				<headerContent>
-			<Button icon="sap-icon://begin" tooltip="Login" text="Login" press="loginPress"/>
-		</headerContent>
+					<Button icon="sap-icon://log" tooltip="Login" text="Login" press="loginPress"/>
+				</headerContent>
 					<content>
-						<VBox>
-							
+						<VBox>							
 							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 								<items>
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category"/>
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" selectedIndex="1" columns="2" class="sapUiTinyMarginBottom">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" class="sapUiTinyMarginBottom">
 												<RadioButton id="academic" text="Academic" />
 												<RadioButton id="maintenance" text="Maintenance"/>
 												<RadioButton id="building" text="Building Use" />
@@ -38,7 +37,7 @@
 												<core:Item key="internet" text="Internet"/>
 											</ComboBox> -->
 											<VBox id="idStopWatchVBox"/>
-											<!-- <Button text="droid toast" press="droidPress"/> -->
+											<!-- <Button text="droid toast" press="droidPress"/> -->											
 										</VBox>
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Enter Manually">
@@ -51,43 +50,95 @@
 												<RadioButton id="maintenance2" text="Maintenance"/>
 												<RadioButton id="building2" text="Building Use" />
 												<RadioButton id="other2" text="Other" />
-											</RadioButtonGroup>
-											<!-- <ComboBox class="sapUiTinyMargin" required="true">
-												<core:Item key="sleep" text="Sleep"/>
-												<core:Item key="transport" text="Transport"/>
-												<core:Item key="sport" text="Sport"/>
-												<core:Item key="eat" text="Eating"/>
-												<core:Item key="shop" text="Shopping"/>
-												<core:Item key="housework" text="Housework"/>
-												<core:Item key="walk" text="Work"/>
-												<core:Item key="study" text="Study"/>
-												<core:Item key="entertainment" text="Entertainment"/>
-												<core:Item key="read" text="Read"/>
-												<core:Item key="movie" text="Movie"/>
-												<core:Item key="internet" text="Internet"/>
-											</ComboBox> -->
+											</RadioButtonGroup>											
 											<Title text="Enter time"/>
 											<TimePicker id="idTimeIn" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
 												placeholder="Start Time"/>
 											<TimePicker id="idTimeOut" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
 												placeholder="End Time"/>
 											<ObjectNumber id="idHoursLogged" class="sapUiTinyMargin sapMObjectNumberLarge" number="" state="Success" unit=""/>
-											<Button text="Save this entry" press="saveTimeEntry" class="sapUiTinyMargin" type="Accept"/>
+											<!-- <Button text="Save this entry" press="saveTimeEntry" class="sapUiTinyMargin" type="Accept"/> -->
 											<!-- <m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/> -->
-											<!-- <Title text="Entries for the day"/>
+											<Title text="Entries for the day"/>
 											<List binding="" class="sapUiTinyMargin" mode="Delete">
 												<StandardListItem title="App Development" description="12:00AM to 2:10AM" counter="2" infoState="Information"/>
-											</List> -->
-											<!-- <Bar>
+											</List>
+											<Bar>
 												<contentRight>
-													<Button text="Save" type="Accept"/>
+													<Button text="Save" icon="sap-icon://save" type="Accept"/>
 												</contentRight>
-											</Bar> -->
+											</Bar>												
 										</VBox>
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Stats">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
-											<Title text="Choose a day"/>
+											<Title text="Choose a date range or an option"/>
+											<DateRangeSelection
+																id="DRS3"
+																showFooter="true"
+																change="handleChange"/>			
+											<HBox>
+												<Button text="Last 1 week" class="sapUiTinyMargin"/>
+												<Button text="Last 1 Month" class="sapUiTinyMargin"/>
+												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
+											</HBox>	
+												<Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: '/ProductCollection',
+			sorter: {
+				path: 'Name'
+			}
+		}">		
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Entries for the chosen period"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Date" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Start Time" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true">
+				<Text text="End Time" />
+			</Column>
+			<Column
+				minScreenWidth="Desktop"
+				demandPopin="true">
+				<Text text="Category" />
+			</Column>
+			<Column
+				hAlign="End">
+				<Text text="Hours" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text
+						text="{Date}" />					
+					<Text
+						text="{StartTime}" />
+					<Text
+						text="{EndTime}" />
+					<Text
+						text="{Category}" />
+					<ObjectNumber
+						number="{TimeInHours}"
+						unit="Hours"
+						state="Success"/>					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>										
 										</VBox>
 									</IconTabFilter>
 								</items>
