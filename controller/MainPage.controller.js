@@ -144,7 +144,7 @@ sap.ui.define([
 										return (v < 10) ? '0' + v : v;
 									}
 								}
-							}).addStyleClass('timerFace'),
+							}).addStyleClass('timerFace').addStyleClass('textFontSize'),
 							new sap.m.Text({
 								text: {
 									path: '/timer',

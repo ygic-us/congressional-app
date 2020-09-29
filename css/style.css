@@ -1,5 +1,9 @@
 /* Enter your custom styles here */
 
+.textFontSize{
+    font-size: xx-large;
+}
+
 .timerFaceTitle {
     margin: 1px;
     margin-bottom: 4px;
@@ -31,12 +35,12 @@
     width: 40px;
     border: none;
     font-size: 1rem;
-    height: 35px;
+    height: 40px;
     padding-top: 10px;
     text-align: center !important;
     color: #000;
     background-color: #f7f7f7;
-    border-radius: 4px;
+    border-radius: 100px;
     border: 1px solid #bfbfbf;
 }
 
