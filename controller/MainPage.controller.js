@@ -111,7 +111,7 @@ sap.ui.define([
 				var diffInMilliSecs = new Date() - startedAt;
 				var diffInSecs = Math.floor(diffInMilliSecs/1000);														
 				model.setProperty('/timer', diffInSecs);
-			}, 1000);
+			 }, 1000);
 			var vbox = new sap.m.VBox({
 				alignItems: "Start",
 				items: [									
