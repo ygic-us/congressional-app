@@ -32,10 +32,10 @@
 
 .timerFace {
     margin: 1px;
-    width: 60px;
+    width: 55px;
     border: none;
-    font-size: 2rem;
-    height: 60px;
+    font-size: 1.8rem;
+    height: 55px;
     padding-top: 10px;
     text-align: center !important;
     color: #000;
@@ -67,8 +67,11 @@
 	margin: 2px 2px 2px 2px;
     align-items: center;
     border: 2px solid #ccc;
-    width: 340px;
+    width: 330px;
     padding: 4px;
     background-color: transparent;
     border-radius: 8px;
+}
+.greenColorFont{
+    color: cadetblue;
 }

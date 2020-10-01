@@ -121,7 +121,7 @@ sap.ui.define([
 						formatter: function(t){ 
 							return 'Started at ' + new Date(t).toTimeString().substring(0,5)
 						}}, 
-						design:"Bold"}),
+						design:"Bold"}).addStyleClass('greenColorFont'),
 					new sap.m.HBox({
 						items: [
 							new sap.m.Text({
