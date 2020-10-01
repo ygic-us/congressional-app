@@ -10,17 +10,33 @@
 					<Button icon="sap-icon://log" tooltip="Login" text="Login" press="loginPress"/>
 				</headerContent>
 					<content>
-						<VBox>							
+						<VBox>		
+							<ObjectHeader
+		icon="sap-icon://customer"
+		iconDensityAware="false"
+		iconAlt="Medha Karri"
+		imageShape="Circle"
+		responsive="true"
+		title="Medha Karri"
+		intro="Student"
+		>
+			<!-- <ObjectAttribute title="Email address" text="DeniseSmith@sap.com" active="true" />
+			<ObjectAttribute title="Office Phone" text="+33 6 453 564" />
+			<ObjectAttribute title="Functional Area" text="Development" /> -->
+	</ObjectHeader>					
 							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
 								<items>
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
 										<VBox class="sapUiSmallMargin">
-											<Title text="Choose an activity/category"/>
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" class="sapUiTinyMarginBottom">
-												<RadioButton id="academic" text="Academic" />
-												<RadioButton id="maintenance" text="Maintenance"/>
-												<RadioButton id="building" text="Building Use" />
-												<RadioButton id="other" text="Other" />
+											<Title text="Choose an activity/category" id="rbGroupTitle"/>
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" ariaLabelledBy="rbGroupTitle">
+												<buttons>
+													<RadioButton id="academic" text="Academic " />
+													<RadioButton id="maintenance" text="Maintenance"/>
+													<RadioButton id="building" text="Building Use" />
+													<RadioButton id="other" text="Other"/>
+												</buttons>
+												
 											</RadioButtonGroup>
 											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName2" selectedKey="null">
 												<core:Item key="sleep" text="Sleep"/>
