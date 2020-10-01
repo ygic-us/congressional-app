@@ -32,16 +32,16 @@
 
 .timerFace {
     margin: 1px;
-    width: 40px;
+    width: 60px;
     border: none;
-    font-size: 1rem;
-    height: 40px;
+    font-size: 2rem;
+    height: 60px;
     padding-top: 10px;
     text-align: center !important;
     color: #000;
     background-color: #f7f7f7;
     border-radius: 100px;
-    border: 1px solid #bfbfbf;
+    border: 1px solid #bfbfbf;    
 }
 
 .timerFaceSep {
@@ -67,7 +67,7 @@
 	margin: 2px 2px 2px 2px;
     align-items: center;
     border: 2px solid #ccc;
-    width: 300px;
+    width: 340px;
     padding: 4px;
     background-color: transparent;
     border-radius: 8px;
