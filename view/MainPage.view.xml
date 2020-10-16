@@ -29,15 +29,21 @@
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity" >
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category" id="rbGroupTitle"/>
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" ariaLabelledBy="rbGroupTitle">
+											<RadioButton groupName="GroupA" text="Academic" select="rbselectedTemp"/>
+													<RadioButton groupName="GroupA" text="Maintenance" select="rbselectedTemp"/>
+													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>
+													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/>
+
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="false">
 												<buttons>
-													<RadioButton id="academic" text="Academic " />
-													<RadioButton id="maintenance" text="Maintenance"/>
-													<RadioButton id="building" text="Building Use" />
-													<RadioButton id="other" text="Other"/>
+													<RadioButton groupName="GroupA" id="academic" text="Academic" />
+													<RadioButton groupName="GroupA" id="maintenance" text="Maintenance"/>
+													<RadioButton groupName="GroupA" id="building" text="Building Use" />
+													<RadioButton groupName="GroupA" id="other" text="Other"/>
 												</buttons>
 												
 											</RadioButtonGroup>
+											
 											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName2" selectedKey="null">
 												<core:Item key="sleep" text="Sleep"/>
 												<core:Item key="transport" text="Transport"/>

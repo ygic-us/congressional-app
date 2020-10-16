@@ -87,6 +87,30 @@ sap.ui.define([
 
 
 		},
+		rbselectedTemp : function(oEvent)
+		{
+			
+			switch(oEvent.getSource().getText())
+			{
+				case "Academic":
+					this.byId("idCategoryName").setSelectedIndex(0)
+					break;
+					case "Maintenance":
+						this.byId("idCategoryName").setSelectedIndex(1)
+					break;
+					case "Building Use":
+						this.byId("idCategoryName").setSelectedIndex(2)
+					break;
+					case "Other":
+						this.byId("idCategoryName").setSelectedIndex(3)
+					break;
+					default:
+						break;
+					
+			}
+			this.byId("idCategoryName").fireSelect();
+
+		},
 		categoryChanged: function (oEvent) {
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
