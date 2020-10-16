@@ -24,9 +24,9 @@
 			<ObjectAttribute title="Office Phone" text="+33 6 453 564" />
 			<ObjectAttribute title="Functional Area" text="Development" /> -->
 	</ObjectHeader>					
-							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false">
 								<items>
-									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity">
+									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity" >
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category" id="rbGroupTitle"/>
 											<RadioButtonGroup id="idCategoryName" select="categoryChanged" columns="2" ariaLabelledBy="rbGroupTitle">
