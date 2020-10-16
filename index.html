@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>YGIC-Personal-Timelogger</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="apple-mobile-web-app-title" content="YGIC">
+		<title>YGIC Volunteer</title>
 		<!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
 		<script type="text/javascript" src="https://alcdn.msauth.net/lib/1.4.0/js/msal.js" integrity="sha384-DqrejB/00ccJc4ufFWc+TA3ImOruMihWCj6Wu9hEzRUNdqt4180qlzT0mFa6/Zp2" crossorigin="anonymous"></script>
   
@@ -11,6 +12,21 @@
 		<script type="text/javascript">
 		  if(typeof Msal === 'undefined')document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/lib/1.4.0/js/msal.js' type='text/javascript' %3E%3C/script%3E"));
 		</script>
+
+		<!-- All Apple stuff -->
+		<link rel="apple-touch-icon" href="/images/ygiclogo.png">
+		<link rel="apple-touch-startup-image" href="/images/ygiclogo.png">
+		<link href="splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+		<link href="splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
 	   
 	   <!-- importing app scripts -->
 		<script type="text/javascript" src="./auth/policies.js"></script>
@@ -23,10 +39,7 @@
 		<script type="text/javascript" src="./auth/authPopup.js"></script>
 		<script type="text/javascript" src="./auth/api.js"></script>
 
-		<!-- adding Bootstrap 4 for UI components -->		
-		<link rel="apple-touch-icon" href="/images/ygiclogo.png">
-		<link rel="apple-touch-startup-image" href="/images/Ganesh.png">
-
+		<!-- adding Bootstrap 4 for UI components -->				
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<script id="sap-ui-bootstrap"
 			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
