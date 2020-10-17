@@ -6,9 +6,9 @@
 		<App id="app">
 			<pages>
 				<Page id="page" showHeader="true" title="{i18n>title}">
-				<headerContent>
-					<Button icon="sap-icon://log" tooltip="Login" text="Login" press="loginPress"/>
-				</headerContent>
+				<!-- <headerContent>
+					<Button icon="sap-icon://log" tooltip="Login" text="Login" press="loginPress"/> 
+				</headerContent> -->
 					<content>
 						<VBox>		
 							<ObjectHeader

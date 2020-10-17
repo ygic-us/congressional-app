@@ -35,12 +35,7 @@ sap.ui.define([
 			var oModel = new JSONModel();
 			oModel.setData(oData);
 			return oModel;
-		},
-		loginPress: function(oEvent)
-		{
-			//authRedirect.signIn();
-			signIn();
-		},
+		},		
 		
 		handleTimeChange: function (oEvent) {
 			this.CalcTimeDiff();
