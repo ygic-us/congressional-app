@@ -38,6 +38,7 @@ sap.ui.define([
 		{
 			oStorage.clear();
 			MessageBox.success("Cleared the reports");
+			oEntriesModel.refresh(true)
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
