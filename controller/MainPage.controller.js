@@ -36,15 +36,18 @@ sap.ui.define([
 
 		deleteReportsPress : function()
 		{
-			oStorage.clear();
+			oStorage.clear();			
+			var emptyModel = { "Entries" : []};				
+			oStorage.put("myLocalData",JSON.stringify(emptyModel));
 			MessageBox.success("Cleared the reports");
-			oEntriesModel.refresh(true)
+			this.loadEntries();
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
 			oEntriesModel = new JSONModel(); //this.initSampleProductsModel();
 			oEntriesModel.setJSON(oStorage.get("myLocalData"))
 			oView.setModel(oEntriesModel);
+			oEntriesModel.refresh(true)
 		},
 		initSampleProductsModel: function () {
 			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
