@@ -44,6 +44,12 @@
     border: 1px solid #bfbfbf;    
 }
 
+.sapMBarPH{
+
+    background-color: lightsteelblue;
+    
+    }
+
 .timerFaceSep {
     width: 10px;
     border: none;
