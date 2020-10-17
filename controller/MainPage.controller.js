@@ -115,12 +115,12 @@ sap.ui.define([
 			oEntriesModel.getData().Entries.push(entry);
 			oEntriesModel.refresh(true);
 			oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
-			
+			MessageBox.success("Entry saved successfully.");
 			this.byId("calendar").destroySelectedDates()
 			this.byId("idTimeIn").setValue(null)
 			this.byId("idTimeOut").setValue(null)
 			this.byId("idHoursLogged").setNumber("");
-			MessageBox.success("Entry saved successfully ");
+			
 			
 
 			
