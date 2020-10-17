@@ -50,6 +50,11 @@
     
     } */
 
+
+.roundClass .sapMBtnInner{
+        border-radius:30px;
+      }
+
 .timerFaceSep {
     width: 10px;
     border: none;
@@ -71,7 +76,7 @@
 }
 
 .timerCase {
-	margin: 2px 2px 2px 2px;
+	margin: 3px 3px 3px 3px;
     align-items: center;
     border: 2px solid #ccc;
     width: 330px;

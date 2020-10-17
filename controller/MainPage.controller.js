@@ -222,7 +222,7 @@ sap.ui.define([
 					new sap.m.Button({
 						icon: 'sap-icon://stop',
 						tooltip: 'Stop and save the timer',
-						text:'Stop & Save',
+						text:'Stop',
 						type:'Accept',						
 						enabled: '{/start}',
 						press: function (oEvent) {									
@@ -259,7 +259,7 @@ sap.ui.define([
 							oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
 							categoryComboBox.setSelectedIndex(null); 
 						}
-					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton')	,				
+					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass')	,				
 				new sap.m.Button({
 					visible:false,
 					iconFirst: true,
