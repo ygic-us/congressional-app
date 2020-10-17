@@ -115,8 +115,8 @@
 															<Text text="Date" />
 														</Column> -->
 														<Column
-															minScreenWidth="Desktop"
-															demandPopin="true">
+															width="12em"
+															>
 															<Text text="Category" />
 														</Column>
 														<Column
@@ -152,13 +152,13 @@
 																<Text
 																	text="{StartTime} - " /> 
 																<Text
-																	text="{EndTime}" />
+																	text=" {EndTime}" />
 																</HBox>
 																
 																																					
 																<ObjectNumber
 																	number="{TotalTimeWorkedInHours}"
-																	unit="Hours"
+																	unit="H"
 																	state="Success"/>					
 															</cells>
 														</ColumnListItem>
