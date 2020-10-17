@@ -91,12 +91,12 @@
 									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Reports">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
 											<Title text="Choose a date range or an option"/>
-											<DateRangeSelection
+											<!-- <DateRangeSelection
 																id="DRS3"
 																showFooter="true"
-																change="handleChange"/>			
+																change="handleChange"/>			 -->
 											<HBox>
-												<Button text="Last 1 week" class="sapUiTinyMargin"/>
+												<Button text="Last 1 week (defaultly loaded)" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Month" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
 											</HBox>	
@@ -110,9 +110,14 @@
 														</OverflowToolbar>
 													</infoToolbar>
 													<columns>
-														<Column
+														<!-- <Column
 															width="12em">
 															<Text text="Date" />
+														</Column> -->
+														<Column
+															minScreenWidth="Desktop"
+															demandPopin="true">
+															<Text text="Category" />
 														</Column>
 														<Column
 															minScreenWidth="Tablet"
@@ -124,11 +129,7 @@
 															demandPopin="true">
 															<Text text="End Time" />
 														</Column> -->
-														<Column
-															minScreenWidth="Desktop"
-															demandPopin="true">
-															<Text text="Category" />
-														</Column>
+														
 														<Column
 															hAlign="End">
 															<Text text="Hours" />
@@ -137,8 +138,12 @@
 													<items>
 														<ColumnListItem>
 															<cells>
-																<Text
-																	text="{Date}" />	
+																<!-- <Text
+																	text="{Date}" />	 -->
+																	<ObjectNumber
+																	number="{Category}"
+																	unit=""
+																	state="Information"/>
 																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
 																							placeholder="Started At" value="{StartTime}" enabled="false"/>				 -->
 																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
@@ -150,10 +155,7 @@
 																	text="{EndTime}" />
 																</HBox>
 																
-																<ObjectNumber
-																	number="{Category}"
-																	unit=""
-																	state="Information"/>																					
+																																					
 																<ObjectNumber
 																	number="{TotalTimeWorkedInHours}"
 																	unit="Hours"
