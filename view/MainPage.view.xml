@@ -96,7 +96,7 @@
 																showFooter="true"
 																change="handleChange"/>			 -->
 											<HBox>
-												<Button text="Last 1 week (defaultly loaded)" class="sapUiTinyMargin"/>
+												<Button text="Last 1 week" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Month" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
 											</HBox>	
