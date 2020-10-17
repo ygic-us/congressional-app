@@ -223,7 +223,7 @@ sap.ui.define([
 						icon: 'sap-icon://stop',
 						tooltip: 'Stop and save the timer',
 						text:'Stop',
-						type:'Accept',						
+						type:'Reject',						
 						enabled: '{/start}',
 						press: function (oEvent) {									
 							clearInterval(timer);

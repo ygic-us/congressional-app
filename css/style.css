@@ -76,10 +76,10 @@
 }
 
 .timerCase {
-	margin: 3px 3px 3px 3px;
+	margin: 2px 2px 2px 2px;
     align-items: center;
     border: 2px solid #ccc;
-    width: 330px;
+    width: 300px;
     padding: 4px;
     background-color: transparent;
     border-radius: 8px;
