@@ -11,7 +11,7 @@
 				</headerContent> -->
 					<content>
 						<VBox>		
-							<ObjectHeader
+							<!-- <ObjectHeader
 		icon="sap-icon://customer"
 		iconDensityAware="false"
 		iconAlt="Medha Karri"
@@ -19,22 +19,22 @@
 		responsive="true"
 		title="Medha Karri"
 		intro="Student"
-		>
+		> -->
 			<!-- <ObjectAttribute title="Email address" text="DeniseSmith@sap.com" active="true" />
 			<ObjectAttribute title="Office Phone" text="+33 6 453 564" />
 			<ObjectAttribute title="Functional Area" text="Development" /> -->
-	</ObjectHeader>					
+	<!-- </ObjectHeader>					 -->
 							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false">
 								<items>
-									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Log Activity" >
+									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Start Activity" >
 										<VBox class="sapUiSmallMargin">
 											<Title text="Choose an activity/category" id="rbGroupTitle"/>
-											<RadioButton groupName="GroupA" text="Academic" select="rbselectedTemp"/>
+											<!-- <RadioButton groupName="GroupA" text="Academic" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Maintenance" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>
-													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/>
+													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/> -->
 
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="false">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true">
 												<buttons>
 													<RadioButton groupName="GroupA" id="academic" text="Academic" />
 													<RadioButton groupName="GroupA" id="maintenance" text="Maintenance"/>
@@ -62,12 +62,12 @@
 											<!-- <Button text="droid toast" press="droidPress"/> -->											
 										</VBox>
 									</IconTabFilter>
-									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Enter Manually">
+									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Log Manually">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
 											<Title text="Choose a day"/>
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
 											<Title text="Choose a category"/>
-											<RadioButtonGroup selectedIndex="1" columns="2" class="sapUiTinyMargin">
+											<RadioButtonGroup id="categoryIdManualEntry" selectedIndex="1" columns="2" class="sapUiTinyMargin">
 												<RadioButton id="academic1" text="Academic" />
 												<RadioButton id="maintenance2" text="Maintenance"/>
 												<RadioButton id="building2" text="Building Use" />
@@ -80,19 +80,15 @@
 												placeholder="End Time"/>
 											<ObjectNumber id="idHoursLogged" class="sapUiTinyMargin sapMObjectNumberLarge" number="" state="Success" unit=""/>
 											<!-- <Button text="Save this entry" press="saveTimeEntry" class="sapUiTinyMargin" type="Accept"/> -->
-											<!-- <m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/> -->
-											<Title text="Entries for the day"/>
-											<List binding="" class="sapUiTinyMargin" mode="Delete">
-												<StandardListItem title="App Development" description="12:00AM to 2:10AM" counter="2" infoState="Information"/>
-											</List>
+											<!-- <m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/> -->											
 											<Bar>
 												<contentRight>
-													<Button text="Save" icon="sap-icon://save" type="Accept"/>
+													<Button text="Save this entry" icon="sap-icon://save" type="Accept" press="saveTimeEntry"/>
 												</contentRight>
 											</Bar>												
 										</VBox>
 									</IconTabFilter>
-									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Stats">
+									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Reports">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
 											<Title text="Choose a date range or an option"/>
 											<DateRangeSelection
@@ -104,63 +100,69 @@
 												<Button text="Last 1 Month" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
 											</HBox>	
-												<Table id="idProductsTable"
-		inset="false"
-		items="{
-			path: '/ProductCollection',
-			sorter: {
-				path: 'Name'
-			}
-		}">		
-		<infoToolbar>
-			<OverflowToolbar>
-				<Label text="Entries for the chosen period"/>
-			</OverflowToolbar>
-		</infoToolbar>
-		<columns>
-			<Column
-				width="12em">
-				<Text text="Date" />
-			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="true">
-				<Text text="Start Time" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true">
-				<Text text="End Time" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true">
-				<Text text="Category" />
-			</Column>
-			<Column
-				hAlign="End">
-				<Text text="Hours" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<Text
-						text="{Date}" />					
-					<Text
-						text="{StartTime}" />
-					<Text
-						text="{EndTime}" />
-					<Text
-						text="{Category}" />
-					<ObjectNumber
-						number="{TimeInHours}"
-						unit="Hours"
-						state="Success"/>					
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>										
+												<Table id="idProductsTable"	inset="true" items="{ path: '/Entries', sorter: {
+				path: 'Date',
+					group: true
+			}}">		
+													<infoToolbar>
+														<OverflowToolbar>
+															<Label text="Entries for the chosen period"/>
+														</OverflowToolbar>
+													</infoToolbar>
+													<columns>
+														<Column
+															width="12em">
+															<Text text="Date" />
+														</Column>
+														<Column
+															minScreenWidth="Tablet"
+															demandPopin="true">
+															<Text text="Start &amp; End Times" />
+														</Column>
+														<!-- <Column
+															minScreenWidth="Desktop"
+															demandPopin="true">
+															<Text text="End Time" />
+														</Column> -->
+														<Column
+															minScreenWidth="Desktop"
+															demandPopin="true">
+															<Text text="Category" />
+														</Column>
+														<Column
+															hAlign="End">
+															<Text text="Hours" />
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Text
+																	text="{Date}" />	
+																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
+																							placeholder="Started At" value="{StartTime}" enabled="false"/>				 -->
+																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
+																							placeholder="Ended At" value="{EndTime}" enabled="false"/> -->
+																<HBox>
+																<Text
+																	text="{StartTime} - " /> 
+																<Text
+																	text="{EndTime}" />
+																</HBox>
+																
+																<ObjectNumber
+																	number="{Category}"
+																	unit=""
+																	state="Information"/>																					
+																<ObjectNumber
+																	number="{TotalTimeWorkedInHours}"
+																	unit="Hours"
+																	state="Success"/>					
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>	
+											<Button text="clear"/>
 										</VBox>
 									</IconTabFilter>
 								</items>

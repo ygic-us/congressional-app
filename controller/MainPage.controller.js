@@ -10,33 +10,35 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	'sap/ui/model/json/JSONModel',	
 ], function (Controller, ValueState, Dialog, DialogType, Button, ButtonType, Text,MessageBox,MessageToast,JSONModel) {
-	"use strict";
+	"use strict";	
+	var oStorage;
+	var oEntriesModel;
+	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {		
 
-	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {
-		
 		onInit: function () {
 			this.byId("idCategoryName").setSelectedIndex(null); 
 
-			this.loadEntries();
-
+		
 			jQuery.sap.require("jquery.sap.storage");
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			//Check if there is data into the Storage
 			if (oStorage.get("myLocalData")) {
-				MessageBox.information("Data from local ");	
+				//MessageBox.information("Data from local ");	
 			}
 			else
 			{				
+				var emptyModel = { "Entries" : []};
 				MessageBox.information("Data NOT from local ");	
-				oStorage.put("myLocalData","local")
+				oStorage.put("myLocalData",JSON.stringify(emptyModel));
 			}
-
+			this.loadEntries();
 			
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
-			this.oProductsModel = this.initSampleProductsModel();
-			oView.setModel(this.oProductsModel);
+			oEntriesModel = new JSONModel(); //this.initSampleProductsModel();
+			oEntriesModel.setJSON(oStorage.get("myLocalData"))
+			oView.setModel(oEntriesModel);
 		},
 		initSampleProductsModel: function () {
 			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
@@ -76,7 +78,7 @@ sap.ui.define([
 				return;
 			}
 
-			if(this.byId("idTimeIn").getValue() == "" || this.byId("idTimeIn").getValue() == "")
+			if(this.byId("idTimeIn").getValue() == "" || this.byId("idTimeOut").getValue() == "")
 			{
 				MessageBox.information("Please make sure you have entered both Start and End times ");
 				return;
@@ -88,11 +90,40 @@ sap.ui.define([
 				return;
 			}
 
-			if(this.byId("calendar").getSelectedDates()[0].getStartDate() > new Date())
-			{
-				MessageBox.information("You can't enter for future dates");
-				return;
-			}
+			// if(this.byId("calendar").getSelectedDates()[0].getStartDate() > new Date())
+			// {
+			// 	MessageBox.information("You can't enter for future dates");
+			// 	return;
+			// }
+			var categoryComboBox = this.byId("categoryIdManualEntry");
+			var timeFrom = this.byId("idTimeIn").getDateValue();
+			var timeTo = this.byId("idTimeOut").getDateValue();
+			var diffInMilliSecs = timeTo - timeFrom;
+			var diffInMins = ((diffInMilliSecs / 1000) / 60);
+			var diffInHours = ((diffInMins) / 60);
+				
+			
+			var entry = { 	"Date": this.byId("calendar").getSelectedDates()[0].getStartDate().toLocaleDateString(), 
+												"StartTime" : this.byId("idTimeIn").getValue(), 
+												"EndTime": this.byId("idTimeOut").getValue() , 
+												"Category": categoryComboBox.getSelectedButton().getText(),
+												"TotalTimeWorkedInSeconds": diffInHours*60*60,
+												"TotalTimeWorkedInHours": diffInHours,
+												"TimeOfEntry" : new Date().toISOString(),
+												"IsManualEntry": true
+											}
+			oEntriesModel.getData().Entries.push(entry);
+			oEntriesModel.refresh(true);
+			oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
+			
+			this.byId("calendar").destroySelectedDates()
+			this.byId("idTimeIn").setValue(null)
+			this.byId("idTimeOut").setValue(null)
+			this.byId("idHoursLogged").setNumber("");
+			MessageBox.success("Entry saved successfully ");
+			
+
+			
 
 
 		},
@@ -206,11 +237,32 @@ sap.ui.define([
 							timer = null;
 							var m = this.getModel();
 							m.setProperty('/start', false);
+							var title = m.getProperty('/title');
 							var startTime = m.getProperty('/startedAt');							
 							var endTime = new Date();							
-							var diff = endTime-startTime							
+							var diff = endTime-startTime	
 							var totalTimeWorked = Math.floor(diff/1000);
-							alert(totalTimeWorked)													
+							if(totalTimeWorked < 60)						
+							{
+								MessageBox.information("Too little time to log.");
+							}
+							else
+							{
+								
+								var entry = { 	"Date": new Date().toLocaleDateString(), 
+												"StartTime" : new Date(startTime).toLocaleTimeString(), 
+												"EndTime":endTime.toLocaleTimeString(), 
+												"Category": title, 
+												"TotalTimeWorkedInSeconds": totalTimeWorked,
+												"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
+												"TimeOfEntry" : new Date().toISOString(),
+												"IsManualEntry": false
+											}
+								oEntriesModel.getData().Entries.push(entry);
+								oEntriesModel.refresh(true);
+								oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
+							}
+							
 							oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
 							categoryComboBox.setSelectedIndex(null); 
 						}
