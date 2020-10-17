@@ -27,8 +27,7 @@ sap.ui.define([
 			}
 			else
 			{				
-				var emptyModel = { "Entries" : []};
-				MessageBox.information("Data NOT from local ");	
+				var emptyModel = { "Entries" : []};				
 				oStorage.put("myLocalData",JSON.stringify(emptyModel));
 			}
 			this.loadEntries();
@@ -120,12 +119,6 @@ sap.ui.define([
 			this.byId("idTimeIn").setValue(null)
 			this.byId("idTimeOut").setValue(null)
 			this.byId("idHoursLogged").setNumber("");
-			
-			
-
-			
-
-
 		},
 		rbselectedTemp : function(oEvent)
 		{
