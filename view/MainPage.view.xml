@@ -164,7 +164,7 @@
 														</ColumnListItem>
 													</items>
 												</Table>	
-											<Button text="clear"/>
+											<Button text="Delete all reports" type="Reject" press="deleteReportsPress"/>
 										</VBox>
 									</IconTabFilter>
 								</items>

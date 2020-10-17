@@ -33,6 +33,12 @@ sap.ui.define([
 			this.loadEntries();
 			
 		},
+
+		deleteReportsPress : function()
+		{
+			oStorage.clear();
+			MessageBox.success("Cleared the reports");
+		},
 		loadEntries: function () {			
 			var oView = this.getView();
 			oEntriesModel = new JSONModel(); //this.initSampleProductsModel();
