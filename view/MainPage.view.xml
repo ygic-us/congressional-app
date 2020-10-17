@@ -150,7 +150,7 @@
 																							placeholder="Ended At" value="{EndTime}" enabled="false"/> -->
 																<HBox>
 																<Text
-																	text="{StartTime} - " /> 
+																	text="{StartTime} to " /> 
 																<Text
 																	text=" {EndTime}" />
 																</HBox>
