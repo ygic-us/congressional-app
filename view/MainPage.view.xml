@@ -90,7 +90,7 @@
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://bar-chart" key="stats" iconColor="Critical" text="Reports">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
-											<Title text="Choose an option"/>
+											<Title text="Choose an option (loads past week by default)" wrapping="true"/>
 											<!-- <DateRangeSelection
 																id="DRS3"
 																showFooter="true"
