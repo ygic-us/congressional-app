@@ -18,6 +18,20 @@ sap.ui.define([
 			this.byId("idCategoryName").setSelectedIndex(null); 
 
 			this.loadEntries();
+
+			jQuery.sap.require("jquery.sap.storage");
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			//Check if there is data into the Storage
+			if (oStorage.get("myLocalData")) {
+				MessageBox.information("Data from local ");	
+			}
+			else
+			{				
+				MessageBox.information("Data NOT from local ");	
+				oStorage.put("myLocalData","local")
+			}
+
+			
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
