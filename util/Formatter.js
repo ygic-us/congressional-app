@@ -6,12 +6,17 @@ sap.ui.define(function () {
 		
 		calcHours: function(collection)
 		{
-			var total = 0;
+            if(collection)
+            {
+                var total = 0;
 			for(var v = 0; v< collection.length; v++)
 			{
 				total = total + collection[v].TotalTimeWorkedInHours;
 			}
 			return total.toFixed(2);
+            }
+            return 0;
+			
 		}
 		
 		
