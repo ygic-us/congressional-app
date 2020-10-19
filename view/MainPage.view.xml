@@ -112,7 +112,7 @@
 											</HBox>
 												<!-- <core:HTML content='&lt;div id=&quot;pie&quot;/&gt;'> 
 			</core:HTML>-->			
-												<Table id="idProductsTable"	inset="true" items="{ path: '/Entries', sorter: {
+												<Table width="100%" id="idProductsTable"	inset="true" items="{ path: '/Entries', sorter: {
 				path: 'Date',
 					group: true
 			}}">		
