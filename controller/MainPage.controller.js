@@ -8,12 +8,16 @@ sap.ui.define([
 	"sap/m/Text",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
-	'sap/ui/model/json/JSONModel',	
-], function (Controller, ValueState, Dialog, DialogType, Button, ButtonType, Text,MessageBox,MessageToast,JSONModel) {
-	"use strict";	
+	'sap/ui/model/json/JSONModel',
+	'sap/ui/core/util/Export',
+	'sap/ui/core/util/ExportTypeCSV',
+	'../util/Formatter'	
+], function (Controller, ValueState, Dialog, DialogType, Button, ButtonType, Text,MessageBox,MessageToast,JSONModel, Export, ExportTypeCSV, Formatter) {
+	"use strict";		
 	var oStorage;
 	var oEntriesModel;
 	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {		
+		formatter: Formatter,
 
 		onInit: function () {
 			this.byId("idCategoryName").setSelectedIndex(null); 
@@ -34,13 +38,110 @@ sap.ui.define([
 			
 		},
 
-		deleteReportsPress : function()
+		iconTabBarChange : function(oEvent)
 		{
+			if(oEvent.getSource().getSelectedKey() == "stats")
+			{
+				// this.byId("hoursLastWeek")
+				// this.byId("hoursLastMonth")
+				// var model = this.getView().getModel()
+				// var collection = model.getData().Entries
+				// var totalweekly = 0;
+				// var totalMonthly = 0;
+				// var weekBefore = "";
+				// var monthBeforeDate = "";
+				// var firstDay = new Date();
+ 				// var previousweek= new Date(firstDay.getTime() - 7 * 24 * 60 * 60 * 1000);
+				// for(var v = 0; v< collection.length; v++)
+				// {
+				// 	if(collection[v].TimeOfEntry < )
+				// 	totalweekly = totalweekly + collection[v].TotalTimeWorkedInHours;
+				// 	totalMonthly = totalMonthly + collection[v].TotalTimeWorkedInHours;
+				// }
+			
+			}
+			
+		},
+		deleteReportsPress : function()
+		{			
 			oStorage.clear();			
 			var emptyModel = { "Entries" : []};				
 			oStorage.put("myLocalData",JSON.stringify(emptyModel));
-			MessageBox.success("Cleared the reports");
+			MessageBox.success("Cleared all the entries");
 			this.loadEntries();
+		},
+		downloadReportsPress : function(oEvt)
+		{
+			var oExport = new Export({
+
+				// Type that will be used to generate the content. Own ExportType's can be created to support other formats
+				exportType : new ExportTypeCSV({
+					separatorChar : ","
+				}),
+
+				// Pass in the model created above
+				models : this.getView().getModel(),
+
+				// binding information for the rows aggregation
+				rows : {
+					path : "/Entries"
+				},
+
+				// column definitions with column name and binding info for the content																			
+				columns : [{
+					name : "Date",
+					template : {
+						content : "{Date}"
+					}
+				}, {
+					name : "StartTime",
+					template : {
+						content : "{StartTime}"
+					}
+				}, {
+					name : "EndTime",
+					template : {
+						content : "{EndTime}"
+					}
+				}, {
+					name : "Category",
+					template : {
+						content : "{Category}"
+						}					
+					}
+				, {
+					name : "TotalTimeWorkedInSeconds",
+					template : {
+						content : "{TotalTimeWorkedInSeconds}"
+					}
+				}, {
+					name : "TotalTimeWorkedInHours",
+					template : {
+						content : "{TotalTimeWorkedInHours}"
+					}
+				},
+				{
+					name : "TimeOfEntry",
+					template : {
+						content : "{TimeOfEntry}"
+					}
+				},
+				{
+					name : "IsManualEntry",
+					template : {
+						content : "{IsManualEntry}"
+					}
+				}
+				
+				]
+			});
+
+			// download exported file
+			oExport.saveFile().catch(function(oError) {
+				MessageBox.error("Error when downloading data. Browser might not be supported!\n\n" + oError);
+			}).then(function() {
+				oExport.destroy();
+			});
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
@@ -74,7 +175,17 @@ sap.ui.define([
 				var diffInMilliSecs = timeTo - timeFrom;
 				var diffInMins = ((diffInMilliSecs / 1000) / 60);
 				var diff = Math.floor(diffInMins / 60) + "hrs " + (diffInMins % 60) + "mins";
-				this.byId("idHoursLogged").setNumber(diff);
+				if(diff.toString().includes("-") || diff == "0hrs 0mins")
+				{
+					this.byId("idHoursLogged").setNumber("Invalid time.");
+					this.byId("saveTimeEntryButton").setEnabled(false);
+				}
+				else
+				{
+					this.byId("idHoursLogged").setNumber(diff);
+					this.byId("saveTimeEntryButton").setEnabled(true);
+				}
+				
 			}
 		},
 		saveTimeEntry : function(oEvent)
@@ -98,7 +209,7 @@ sap.ui.define([
 				MessageBox.information("This is an invalid time entry. Please correct your time.");
 				return;
 			}
-
+			this.byId("saveTimeEntryButton").setEnabled(true);
 			// if(this.byId("calendar").getSelectedDates()[0].getStartDate() > new Date())
 			// {
 			// 	MessageBox.information("You can't enter for future dates");
@@ -222,17 +333,11 @@ sap.ui.define([
 								}
 							}).addStyleClass('timerFace')							
 						]
-					})
-				]
-			}).addStyleClass("sapUiTinyMargin")
-			//vbox.setModel(model);
-			var hbox = new sap.m.HBox({
-				alignItems: "Stretch",
-				items: [vbox,
+					}),
 					new sap.m.Button({
 						icon: 'sap-icon://stop',
 						tooltip: 'Stop and save the timer',
-						text:'Stop',
+						text:'Stop and Save',
 						type:'Reject',						
 						enabled: '{/start}',
 						press: function (oEvent) {									
@@ -266,10 +371,58 @@ sap.ui.define([
 								oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
 							}
 							
-							oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
+							oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent());
 							categoryComboBox.setSelectedIndex(null); 
 						}
-					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass')	,				
+					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass')
+				]
+			}).addStyleClass("sapUiTinyMargin")
+			//vbox.setModel(model);
+			var hbox = new sap.m.HBox({
+				alignItems: "Stretch",
+				items: [vbox,
+					// new sap.m.Button({
+					// 	icon: 'sap-icon://stop',
+					// 	tooltip: 'Stop and save the timer',
+					// 	text:'Stop and Save',
+					// 	type:'Reject',						
+					// 	enabled: '{/start}',
+					// 	press: function (oEvent) {									
+					// 		clearInterval(timer);
+					// 		timer = null;
+					// 		var m = this.getModel();
+					// 		m.setProperty('/start', false);
+					// 		var title = m.getProperty('/title');
+					// 		var startTime = m.getProperty('/startedAt');							
+					// 		var endTime = new Date();							
+					// 		var diff = endTime-startTime	
+					// 		var totalTimeWorked = Math.floor(diff/1000);
+					// 		if(totalTimeWorked < 60)						
+					// 		{
+					// 			MessageBox.information("Too little time to log.");
+					// 		}
+					// 		else
+					// 		{
+								
+					// 			var entry = { 	"Date": new Date().toLocaleDateString(), 
+					// 							"StartTime" : new Date(startTime).toLocaleTimeString(), 
+					// 							"EndTime":endTime.toLocaleTimeString(), 
+					// 							"Category": title, 
+					// 							"TotalTimeWorkedInSeconds": totalTimeWorked,
+					// 							"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
+					// 							"TimeOfEntry" : new Date().toISOString(),
+					// 							"IsManualEntry": false
+					// 						}
+					// 			oEntriesModel.getData().Entries.push(entry);
+					// 			oEntriesModel.refresh(true);
+					// 			oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
+					// 		}
+							
+					// 		oEvent.getSource().getParent().getParent().removeItem(oEvent.getSource().getParent());
+					// 		categoryComboBox.setSelectedIndex(null); 
+					// 	}
+					// }).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass')	
+					//,				
 				new sap.m.Button({
 					visible:false,
 					iconFirst: true,

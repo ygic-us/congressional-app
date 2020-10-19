@@ -52,13 +52,16 @@
 
 
 .roundClass .sapMBtnInner{
-        border-radius:30px;
+        border-radius:30px;                
       }
+
+
+
 
 .timerFaceSep {
     width: 10px;
     border: none;
-    font-size: 1rem;
+    font-size: 2rem;
     height: 35px;
     padding-top: 10px;
     text-align: center !important;
