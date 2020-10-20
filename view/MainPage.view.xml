@@ -171,7 +171,7 @@
 																
 																																					
 																<ObjectNumber
-																	number="{path : '/TotalTimeWorkedInHours', formatter: '.formatter.roundHours'}"
+																	number="{path : 'TotalTimeWorkedInHours', formatter: '.formatter.roundHours'}"
 																	unit="H"
 																	state="Success"/>					
 															</cells>
