@@ -15,6 +15,10 @@ sap.ui.define(function () {
 			return parseFloat(total).toFixed(2);
             
 			
+		},
+		roundHours: function(value)
+		{
+			return parseFloat(value).toFixed(2);
 		}
 		
 		
