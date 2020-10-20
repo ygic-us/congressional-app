@@ -12,7 +12,7 @@ sap.ui.define(function () {
 			{
 				total = total + parseFloat(collection[v].TotalTimeWorkedInHours);
 			}
-			return total.toFixed(2);
+			return parseFloat(total).toFixed(2);
             
 			
 		}
