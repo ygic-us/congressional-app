@@ -146,7 +146,7 @@
 														<Column
 															hAlign="End">
 															<Text text="Hours" />
-															<footer><Text text="{path: '/Entries', formatter: '.formatter.calcHours'}"/></footer>
+															<footer><Text text="{path: '/Entries', formatter: '.formatter.calcHours'} H"/></footer>
 														</Column>
 													</columns>
 													<items>
