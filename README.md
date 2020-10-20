@@ -14,7 +14,7 @@ Dependencies
 How to run the project
     * Download the zip
     * Open the downloaded folder in vscode. 
-    * Start a local server such as lite-server.
+    * Start a local server such as lite-server in the root or location of the index.html file.
 
 Timer module that has been used
     * https://jsbin.com/hofade/edit?js,output
