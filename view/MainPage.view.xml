@@ -119,7 +119,7 @@
 				
 													<infoToolbar>
 														<OverflowToolbar>
-															<Label text="Entries for the chosen period"/>
+															<Label text="Entries that have been logged"/>
 														</OverflowToolbar>
 													</infoToolbar>
 													<columns>
