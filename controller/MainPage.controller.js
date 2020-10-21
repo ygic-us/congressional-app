@@ -32,10 +32,54 @@ sap.ui.define([
 			else
 			{				
 				var emptyModel = { "Entries" : []};				
-				oStorage.put("myLocalData",JSON.stringify(emptyModel));
+				oStorage.put("myLocalData",JSON.stringify(emptyModel));				
+				var categoriesModel = {"Categories":[{"Name": "Sleep", "Key":"Sleep"}]}
+				oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
 			}
 			this.loadEntries();
 			
+		},
+		addCategory : function(oEvent)
+		{
+			var dialog = new sap.m.Dialog({
+				title: 'Create Category',
+				type: 'Message',
+				content: [
+					new sap.m.Label({ text: 'Enter a category name', labelFor: 'submitDialogTextarea'}),
+					new sap.m.Input('submitDialogTextarea', {
+						liveChange: function(oEvent) {
+							var sText = oEvent.getParameter('value');
+							var parent = oEvent.getSource().getParent();
+
+							parent.getBeginButton().setEnabled(sText.length > 0);
+						},
+						width: '100%'
+						
+					})
+				],
+				beginButton: new sap.m.Button({
+					type: sap.m.ButtonType.Emphasized,
+					text: 'Save',
+					enabled: false,
+					press: function () {
+						var sText = sap.ui.getCore().byId('submitDialogTextarea').getValue();
+						MessageToast.show('Note is: ' + sText);
+
+						dialog.close();
+					}
+				}),
+				endButton: new Button({
+					text: 'Cancel',
+					press: function () {
+						dialog.close();
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+
+			dialog.open();
 		},
 
 		iconTabBarChange : function(oEvent)
@@ -67,6 +111,8 @@ sap.ui.define([
 			oStorage.clear();			
 			var emptyModel = { "Entries" : []};				
 			oStorage.put("myLocalData",JSON.stringify(emptyModel));
+			var categoriesModel = {"Categories":[]}
+			oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
 			MessageBox.success("Cleared all the entries");
 			this.loadEntries();
 		},
@@ -146,9 +192,15 @@ sap.ui.define([
 		loadEntries: function () {			
 			var oView = this.getView();
 			oEntriesModel = new JSONModel(); //this.initSampleProductsModel();
-			oEntriesModel.setJSON(oStorage.get("myLocalData"))
+			oEntriesModel.setJSON(oStorage.get("myLocalData"))			
 			oView.setModel(oEntriesModel);
 			oEntriesModel.refresh(true)
+			
+			
+			var categoriesModel = new JSONModel();
+			categoriesModel.setJSON(oStorage.get("myLocalData2"))			
+			oView.setModel(categoriesModel,"Categories");
+			categoriesModel.refresh(true)			
 		},
 		initSampleProductsModel: function () {
 			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");

@@ -44,23 +44,14 @@
 												
 											</RadioButtonGroup>
 											
-											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName2" selectedKey="null">
-												<core:Item key="sleep" text="Sleep"/>
-												<core:Item key="transport" text="Transport"/>
-												<core:Item key="sport" text="Sport"/>
-												<core:Item key="eat" text="Eating"/>
-												<core:Item key="shop" text="Shopping"/>
-												<core:Item key="housework" text="Housework"/>
-												<core:Item key="walk" text="Work"/>
-												<core:Item key="study" text="Study"/>
-												<core:Item key="entertainment" text="Entertainment"/>
-												<core:Item key="read" text="Read"/>
-												<core:Item key="movie" text="Movie"/>
-												<core:Item key="internet" text="Internet"/>
+											<!-- <ComboBox class="sapUiTinyMargin" id="idCategoryName2" selectedKey="null" items="{Categories>/Categories}">
+												<core:Item text="{Categories>Name}" key="{Categories>Key}"/>											
 											</ComboBox> -->
 											<VBox id="idStopWatchVBox"/>
-											<!-- <Button text="droid toast" press="droidPress"/> -->											
+											<!-- <Button text="droid toast" press="droidPress"/> -->	
+																					
 										</VBox>
+										
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Log Manually">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
@@ -185,13 +176,12 @@
 							</IconTabBar>
 						</VBox>
 					</content>
-					<!--			<footer>-->
-					<!--	<OverflowToolbar>-->
-					<!--		<ToolbarSpacer/>-->
-					<!--		<Button text="Save" type="Accept" />-->
-					<!--		<Button text="Delete" />-->
-					<!--	</OverflowToolbar>-->
-					<!--</footer>-->
+								<footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Add Category" type="Accept" icon="sap-icon://add" iconFirst="true" press="addCategory"/>							
+						</OverflowToolbar>
+					 </footer>
 				</Page>
 			</pages>
 		</App>
