@@ -98,7 +98,7 @@
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
 											</HBox>	 -->
 											<HBox>
-												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>											
+												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																							
 												<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 											</HBox>
 												<!-- <core:HTML content='&lt;div id=&quot;pie&quot;/&gt;'> 
@@ -172,6 +172,12 @@
 										</VBox>
 										
 									</IconTabFilter>
+									<!-- <IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
+									<VBox class="sapUiTinyMargin">									
+										<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												
+									</VBox>
+									</IconTabFilter> -->
 								</items>
 							</IconTabBar>
 						</VBox>
