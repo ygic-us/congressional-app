@@ -53,7 +53,7 @@
 										</VBox>
 										
 									</IconTabFilter>
-									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Log Manually">
+									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Neutral" text="Log Manually">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
 											<Title text="Choose a day"/>
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
