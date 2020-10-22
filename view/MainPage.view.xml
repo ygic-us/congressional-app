@@ -176,12 +176,12 @@
 							</IconTabBar>
 						</VBox>
 					</content>
-								<footer>
+								<!-- <footer>
 						<OverflowToolbar>
 							<ToolbarSpacer/>
 							<Button text="Add Category" type="Accept" icon="sap-icon://add" iconFirst="true" press="addCategory"/>							
 						</OverflowToolbar>
-					 </footer>
+					 </footer> -->
 				</Page>
 			</pages>
 		</App>
