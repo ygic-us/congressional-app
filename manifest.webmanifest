@@ -17,7 +17,7 @@
     "start_url": "/YGIC-TimeLogger/",
     "background_color": "#FFFFFF",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/YGIC-TimeLogger/",
     "theme_color": "#FFFFFF",
     "shortcuts": [
       
