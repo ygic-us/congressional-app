@@ -44,25 +44,16 @@
 												
 											</RadioButtonGroup>
 											
-											<!-- <ComboBox class="sapUiTinyMargin" change="categoryChanged" id="idCategoryName2" selectedKey="null">
-												<core:Item key="sleep" text="Sleep"/>
-												<core:Item key="transport" text="Transport"/>
-												<core:Item key="sport" text="Sport"/>
-												<core:Item key="eat" text="Eating"/>
-												<core:Item key="shop" text="Shopping"/>
-												<core:Item key="housework" text="Housework"/>
-												<core:Item key="walk" text="Work"/>
-												<core:Item key="study" text="Study"/>
-												<core:Item key="entertainment" text="Entertainment"/>
-												<core:Item key="read" text="Read"/>
-												<core:Item key="movie" text="Movie"/>
-												<core:Item key="internet" text="Internet"/>
+											<!-- <ComboBox class="sapUiTinyMargin" id="idCategoryName2" selectedKey="null" items="{Categories>/Categories}">
+												<core:Item text="{Categories>Name}" key="{Categories>Key}"/>											
 											</ComboBox> -->
 											<VBox id="idStopWatchVBox"/>
-											<!-- <Button text="droid toast" press="droidPress"/> -->											
+											<!-- <Button text="droid toast" press="droidPress"/> -->	
+																					
 										</VBox>
+										
 									</IconTabFilter>
-									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Contrast" text="Log Manually">
+									<IconTabFilter icon="sap-icon://notes" key="attachments" iconColor="Neutral" text="Log Manually">
 										<VBox class="sapUiSmallMargin" alignContent="Center">
 											<Title text="Choose a day"/>
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
@@ -107,7 +98,7 @@
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
 											</HBox>	 -->
 											<HBox>
-												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>											
+												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																							
 												<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 											</HBox>
 												<!-- <core:HTML content='&lt;div id=&quot;pie&quot;/&gt;'> 
@@ -181,17 +172,22 @@
 										</VBox>
 										
 									</IconTabFilter>
+									<!-- <IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
+									<VBox class="sapUiTinyMargin">									
+										<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												
+									</VBox>
+									</IconTabFilter> -->
 								</items>
 							</IconTabBar>
 						</VBox>
 					</content>
-					<!--			<footer>-->
-					<!--	<OverflowToolbar>-->
-					<!--		<ToolbarSpacer/>-->
-					<!--		<Button text="Save" type="Accept" />-->
-					<!--		<Button text="Delete" />-->
-					<!--	</OverflowToolbar>-->
-					<!--</footer>-->
+								<!-- <footer>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Add Category" type="Accept" icon="sap-icon://add" iconFirst="true" press="addCategory"/>							
+						</OverflowToolbar>
+					 </footer> -->
 				</Page>
 			</pages>
 		</App>
