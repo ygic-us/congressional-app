@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-title" content="Volunteer">
+	<title>YGIC Volunteer</title>
+	<link rel="manifest" href="/manifest.webmanifest">
+	<!-- All Apple stuff -->
+	<link rel="apple-touch-icon" href="/images/icon.png">
+	<link href="/images/iphone5_splash.png"
+		media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/iphone6_splash.png"
+		media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/iphoneplus_splash.png"
+		media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/iphonex_splash.png"
+		media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/iphonexr_splash.png"
+		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/iphonexsmax_splash.png"
+		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/ipad_splash.png"
+		media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/ipadpro1_splash.png"
+		media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/ipadpro3_splash.png"
+		media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+	<link href="/images/ipadpro2_splash.png"
+		media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+		rel="apple-touch-startup-image" />
+
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<!-- https://openui5.hana.ondemand.com -->
+	<script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_fiori_3"
+		data-sap-ui-resourceroots='{"ygic.timelogger.personal.YGIC-Personal-Timelogger": "./"}'
+		data-sap-ui-compatVersion="edge" data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+		data-sap-ui-async="true" data-sap-ui-frameOptions="trusted">
+		</script>
+	<!-- <script src="./util/NoSleep.js"></script>
+		<script>
+			var noSleep = new NoSleep();
+			//noSleep.enable();			
+		</script> -->
+
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js')
+				.then(function (registration) {
+					console.log('Registration successful, scope is:', registration.scope);
+				})
+				.catch(function (error) {
+					console.log('Service worker registration failed, error:', error);
+				});
+		}
+	</script>
+</head>
+
+<body class="sapUiBody">
+	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="/">Azure AD B2C</a>
+			<div class="btn-group ml-auto dropleft">
+				<button type="button" id="editProfileButton" class="btn btn-secondary d-none" onclick="editProfile()">Edit Profile</button>
+				<button type="button" id="signIn" class="btn btn-secondary" onclick="signIn()">Sign In</button>
+				<button type="button" id="signOut" class="btn btn-success d-none" onclick="logout()">Sign Out</button>
+			</div>
+		  </nav> -->
+	<div data-sap-ui-component data-name="ygic.timelogger.personal.YGIC-Personal-Timelogger" data-id="container"
+		data-settings='{"id" : "YGIC-Personal-Timelogger"}'></div>
+</body>
+
+</html>
