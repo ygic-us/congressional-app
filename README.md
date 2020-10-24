@@ -22,8 +22,8 @@ Time logger application for voluteer activity for YGIC, Dayton, Ohio, USA.
 
 
 # Screenshots
-![Screenshot1](https://github.com/medhachaitanya/YGIC-TimeLogger/blob/master/screenshots/iphone8silver_portrait.png)
-![Screenshot2](https://github.com/medhachaitanya/YGIC-TimeLogger/blob/master/screenshots/iphone8silver_portrait1.png)
-![Screenshot3](https://github.com/medhachaitanya/YGIC-TimeLogger/blob/master/screenshots/iphone8silver_portrait2.png)
-![Screenshot4](https://github.com/medhachaitanya/YGIC-TimeLogger/blob/master/screenshots/macbookair13_front1.png)
-![Screenshot5](https://github.com/medhachaitanya/YGIC-TimeLogger/blob/master/screenshots/macbookair13_front2.png)
+![Screenshot1](https://github.com/ygic-us/volunteer/blob/master/screenshots/iphone8silver_portrait.png)
+![Screenshot2](https://github.com/ygic-us/volunteer/blob/master/screenshots/iphone8silver_portrait1.png)
+![Screenshot3](https://github.com/ygic-us/volunteer/blob/master/screenshots/iphone8silver_portrait2.png)
+![Screenshot4](https://github.com/ygic-us/volunteer/blob/master/screenshots/macbookair13_front1.png)
+![Screenshot5](https://github.com/ygic-us/volunteer/blob/master/screenshots/macbookair13_front2.png)
