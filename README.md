@@ -12,8 +12,8 @@ Time logger application for voluteer activity for YGIC, Dayton, Ohio, USA.
 * Start a local server such as lite-server in the root or location of the index.html file.
 
 # How to use/install the app?
-    * [Install Instructions](https://github.com/ygic-us/volunteer/blob/master/docs/Install%20instructions.pdf)
-    * [How to use the app?](https://github.com/ygic-us/volunteer/blob/master/docs/How%20to%20use%20the%20app%20instructions.pdf)    
+* [Install Instructions](https://github.com/ygic-us/volunteer/blob/master/docs/Install%20instructions.pdf)
+* [How to use the app?](https://github.com/ygic-us/volunteer/blob/master/docs/How%20to%20use%20the%20app%20instructions.pdf)    
 
 # Other references
 * https://openui5.hana.ondemand.com/topic/68b9644a253741e8a4b9e4279a35c247
