@@ -28,7 +28,14 @@
 								<items>
 									<IconTabFilter icon="sap-icon://begin" key="begin" iconColor="Positive" text="Start Activity" >
 										<VBox class="sapUiSmallMargin">
-											<Title text="Choose an activity/category" id="rbGroupTitle"/>
+											<VBox id="idbackUpVBox" class="vboxBorder">
+											<ObjectStatus text="Please backup your data" state="Error" icon="sap-icon://alert" class="sapUiTinyMarginBegin"/>											
+												<!-- <tnt:InfoLabel id="il1" text="Please backup your data." renderMode="Narrow" colorScheme="3" displayOnly= "false" /> -->
+												<Text id="idlastBackedUpText" text="Last backed up: None" class="sapUiTinyMarginBegin"/>
+												<Button text="Backup now to your device" type="Ghost" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://save"/>	
+											</VBox>
+										
+											<Title text="Choose an activity/category to start" id="rbGroupTitle" class="sapUiTinyMarginTop"/>
 											<!-- <RadioButton groupName="GroupA" text="Academic" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Maintenance" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>

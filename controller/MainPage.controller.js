@@ -20,9 +20,7 @@ sap.ui.define([
 		formatter: Formatter,
 
 		onInit: function () {
-			this.byId("idCategoryName").setSelectedIndex(null); 
-			jQuery.sap.initMobile({viewport: false})
-		
+			this.byId("idCategoryName").setSelectedIndex(null); 					
 			jQuery.sap.require("jquery.sap.storage");
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			//Check if there is data into the Storage
@@ -35,6 +33,8 @@ sap.ui.define([
 				oStorage.put("myLocalData",JSON.stringify(emptyModel));				
 				var categoriesModel = {"Categories":[{"Name": "Sleep", "Key":"Sleep"}]}
 				oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
+				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
+				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
 			}
 			this.loadEntries();
 			
@@ -194,10 +194,14 @@ sap.ui.define([
 
 			// download exported file
 			oExport.saveFile().catch(function(oError) {
-				MessageBox.error("Error when downloading data. Browser might not be supported!\n\n" + oError);
+				MessageBox.error("Error when downloading data. Device browser might not be supported!\n\n" + oError);
 			}).then(function() {
 				oExport.destroy();
+				return;				
 			});
+			var settings =  JSON.parse(oStorage.get("myLocalData3"));
+			settings.Settings.LastBackedUp = new Date().toISOString();
+			oStorage.put("myLocalData3", JSON.stringify(settings));
 		},
 		loadEntries: function () {			
 			var oView = this.getView();
@@ -210,7 +214,32 @@ sap.ui.define([
 			var categoriesModel = new JSONModel();
 			categoriesModel.setJSON(oStorage.get("myLocalData2"))			
 			oView.setModel(categoriesModel,"Categories");
-			categoriesModel.refresh(true)			
+			categoriesModel.refresh(true)		
+			
+			if(oStorage.get("myLocalData3") != null)
+			{
+				var settings =  JSON.parse(oStorage.get("myLocalData3"));
+				var lastBackedUp = new Date(settings.Settings.LastBackedUp);
+				var dateToday = new Date();
+				const diffTime = Math.abs(dateToday - lastBackedUp);
+				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+				this.byId("idlastBackedUpText").setText("Last backed up: " + settings.Settings.LastBackedUp.substring(0,19))
+				if(diffDays > 5)
+				{
+					this.byId("idbackUpVBox").setVisible(true);					
+				}
+				else
+				{
+					this.byId("idbackUpVBox").setVisible(false);				
+				}								
+			}
+			else{
+				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
+				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
+				this.byId("idbackUpVBox").setVisible(false);
+			}
+			
+
 		},
 		initSampleProductsModel: function () {
 			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
@@ -507,10 +536,6 @@ sap.ui.define([
 				}).addStyleClass('timerButton')]}).addStyleClass("sapUiTinyMargin").addStyleClass('timerCase');;
 			hbox.setModel(model);
 			idStopWatchVBox.addItem(hbox);
-		},
-		droidPress: function(oEvt)
-		{
-			 Android.showToast("toast");
 		}
 	});
 });

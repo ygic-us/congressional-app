@@ -1,5 +1,12 @@
 /* Enter your custom styles here */
 
+.vboxBorder {
+    
+    border: 1px dashed red;
+    margin-bottom:5px ;
+      }
+
+
 .textFontSize{
     font-size: xx-large;
 }
