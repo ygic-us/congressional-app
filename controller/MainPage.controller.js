@@ -21,7 +21,7 @@ sap.ui.define([
 
 		onInit: function () {
 			this.byId("idCategoryName").setSelectedIndex(null); 
-
+			jQuery.sap.initMobile({viewport: false})
 		
 			jQuery.sap.require("jquery.sap.storage");
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
