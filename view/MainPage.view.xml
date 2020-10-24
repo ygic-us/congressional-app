@@ -1,8 +1,9 @@
 <mvc:View controllerName="ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage" xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true" class="sapUiSizeCompact" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:ux="sap.uxap" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:ux="sap.uxap" xmlns:core="sap.ui.core"
 	xmlns:ui="sap.ui.table" xmlns:m="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:card="sap.f.cards"
 	xmlns:tnt="sap.tnt" xmlns:dnd="sap.ui.core.dnd">
 	<Shell id="shell">
+	<!-- class="sapUiSizeCompact"  -->
 		<App id="app">
 			<pages>
 				<Page id="page" showHeader="true" title="{i18n>title}">
