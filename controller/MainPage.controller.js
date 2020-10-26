@@ -260,7 +260,8 @@ sap.ui.define([
 			  
 				return `${hours}:${minutes}`;
 			  }
-			var startTime = convertTime12to24(oEvent.getSource().getBindingContext().getProperty("StartTime"));			
+			var startTime = convertTime12to24(oEvent.getSource().getBindingContext().getProperty("StartTime"));	
+			var endTime = 	oEvent.getSource()._sOldInputValue;
 			var timeTo = oEvent.getSource().getDateValue();
 			var timeFrom = new Date(oEvent.getSource().getDateValue());
 			timeFrom.setHours(startTime.split(':')[0])
@@ -272,7 +273,9 @@ sap.ui.define([
 				var diff = Math.floor(diffInMins / 60) + "hrs " + (diffInMins % 60) + "mins";
 				if(diff.toString().includes("-") || diff == "0hrs 0mins")
 				{
-					MessageBox.information("Invalid End Time selected");
+					oEvent.getSource().setValue(endTime)
+					MessageBox.information("Invalid End-Time selected, so this entry not updated.");
+
 				}
 				else
 				{
@@ -286,6 +289,7 @@ sap.ui.define([
 					oEvent.getSource().getModel().refresh(true)				
 					
 					oStorage.put("myLocalData",JSON.stringify(oEvent.getSource().getModel().getData()))
+					MessageBox.information("Saved your changes");
 				}
 
 
