@@ -156,15 +156,16 @@
 																	number="{Category}"
 																	unit=""
 																	state="Information"/>
-																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
-																							placeholder="Started At" value="{StartTime}" enabled="false"/>				 -->
-																<!-- <TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
-																							placeholder="Ended At" value="{EndTime}" enabled="false"/> -->
+																 
 																<HBox>
-																<Text
+																<TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
+																							placeholder="Started At" value="{StartTime}" enabled="false" />
+																<TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
+																							placeholder="Ended At" value="{EndTime}" enabled="true" change="lineItemEndTimeChanged"/>
+																<!-- <Text
 																	text="{StartTime} t" /> 
 																<Text
-																	text="o {EndTime}" />
+																	text="o {EndTime}" /> -->
 																</HBox>
 																
 																																					

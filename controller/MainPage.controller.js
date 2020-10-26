@@ -241,6 +241,56 @@ sap.ui.define([
 			
 
 		},
+
+		lineItemEndTimeChanged: function(oEvent)
+		{
+			console.log(oEvent);
+			const convertTime12to24 = (time12h) => {
+				const [time, modifier] = time12h.split(' ');
+			  
+				let [hours, minutes] = time.split(':');
+			  
+				if (hours === '12') {
+				  hours = '00';
+				}
+			  
+				if (modifier === 'PM') {
+				  hours = parseInt(hours, 10) + 12;
+				}
+			  
+				return `${hours}:${minutes}`;
+			  }
+			var startTime = convertTime12to24(oEvent.getSource().getBindingContext().getProperty("StartTime"));			
+			var timeTo = oEvent.getSource().getDateValue();
+			var timeFrom = new Date(oEvent.getSource().getDateValue());
+			timeFrom.setHours(startTime.split(':')[0])
+			timeFrom.setMinutes(startTime.split(':')[1])
+
+			var diffInMilliSecs = timeTo - timeFrom;
+				var diffInMins = ((diffInMilliSecs / 1000) / 60);
+				var diffInHours = ((diffInMins) / 60);
+				var diff = Math.floor(diffInMins / 60) + "hrs " + (diffInMins % 60) + "mins";
+				if(diff.toString().includes("-") || diff == "0hrs 0mins")
+				{
+					MessageBox.information("Invalid End Time selected");
+				}
+				else
+				{
+					var oModel = oEvent.getSource().getBindingContext().getModel();
+					var oContext = oModel.getContext(oEvent.getSource().getBindingContext().getPath());
+					//oList.setBindingContext(oContext);
+					var entry = oContext.getObject() 
+					entry.TotalTimeWorkedInSeconds = diffInHours*60*60
+					entry.TotalTimeWorkedInHours = diffInHours
+					entry.EndTime = timeTo.toLocaleTimeString()
+					oEvent.getSource().getModel().refresh(true)				
+					
+					oStorage.put("myLocalData",JSON.stringify(oEvent.getSource().getModel().getData()))
+				}
+
+
+		},
+
 		initSampleProductsModel: function () {
 			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
 			var oData = jQuery.sap.sjax({
@@ -255,11 +305,9 @@ sap.ui.define([
 		},		
 		
 		handleTimeChange: function (oEvent) {
-			this.CalcTimeDiff();
+			this.CalcTimeDiff(this.byId("idTimeIn").getDateValue(),this.byId("idTimeOut").getDateValue());
 		},
-		CalcTimeDiff: function () {
-			var timeFrom = this.byId("idTimeIn").getDateValue();
-			var timeTo = this.byId("idTimeOut").getDateValue();
+		CalcTimeDiff: function (timeFrom,timeTo) {			
 			if (timeTo === null || timeFrom === null) {
 				return;
 			} else {
