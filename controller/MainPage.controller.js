@@ -274,7 +274,7 @@ sap.ui.define([
 				if(diff.toString().includes("-") || diff == "0hrs 0mins")
 				{
 					oEvent.getSource().setValue(endTime)
-					MessageBox.information("Invalid End-Time selected, so this entry not updated.");
+					MessageBox.information("Invalid End-Time selected, so this entry isn't updated.");
 
 				}
 				else
