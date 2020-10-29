@@ -187,6 +187,12 @@ sap.ui.define([
 					template : {
 						content : "{IsManualEntry}"
 					}
+				},
+				{
+					name : "Comments",
+					template : {
+						content : "{Comments}"
+					}
 				}
 				
 				]
@@ -275,7 +281,6 @@ sap.ui.define([
 				{
 					oEvent.getSource().setValue(endTime)
 					MessageBox.information("Invalid End-Time selected, so this entry isn't updated.");
-
 				}
 				else
 				{
@@ -373,7 +378,8 @@ sap.ui.define([
 												"TotalTimeWorkedInSeconds": diffInHours*60*60,
 												"TotalTimeWorkedInHours": diffInHours,
 												"TimeOfEntry" : new Date().toISOString(),
-												"IsManualEntry": true
+												"IsManualEntry": true,
+												"Comments": this.byId("idCommentsInput").getValue()
 											}
 			oEntriesModel.getData().Entries.push(entry);
 			oEntriesModel.refresh(true);
@@ -383,6 +389,7 @@ sap.ui.define([
 			this.byId("idTimeIn").setValue(null)
 			this.byId("idTimeOut").setValue(null)
 			this.byId("idHoursLogged").setNumber("");
+			this.byId("idCommentsInput").setValue("");
 		},
 		rbselectedTemp : function(oEvent)
 		{
@@ -443,6 +450,7 @@ sap.ui.define([
 							return 'Started at ' + new Date(t).toTimeString().substring(0,5)
 						}}, 
 						design:"Bold"}).addStyleClass('greenColorFont'),
+						new sap.m.Switch({ customTextOn:" ", customTextOff:" "}),
 					new sap.m.HBox({
 						items: [
 							new sap.m.Text({
@@ -474,9 +482,9 @@ sap.ui.define([
 										return (v < 10) ? '0' + v : v;
 									}
 								}
-							}).addStyleClass('timerFace')							
+							}).addStyleClass('timerFace')													
 						]
-					}),
+					}),					
 					new sap.m.Button({
 						icon: 'sap-icon://stop',
 						tooltip: 'Stop and save the timer',
@@ -507,7 +515,8 @@ sap.ui.define([
 												"TotalTimeWorkedInSeconds": totalTimeWorked,
 												"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
 												"TimeOfEntry" : new Date().toISOString(),
-												"IsManualEntry": false
+												"IsManualEntry": false,
+												"Comments": oEvent.getSource().getParent().getItems()[5].getValue()
 											}
 								oEntriesModel.getData().Entries.push(entry);
 								oEntriesModel.refresh(true);
@@ -517,7 +526,9 @@ sap.ui.define([
 							oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent());
 							categoryComboBox.setSelectedIndex(null); 
 						}
-					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass')
+					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass'),					
+					new sap.m.Input({placeholder:'comments if any',value:'', visible: false}).addStyleClass("sapUiTinyMarginBegin")
+					
 				]
 			}).addStyleClass("sapUiTinyMargin")
 			//vbox.setModel(model);

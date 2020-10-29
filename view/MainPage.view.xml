@@ -76,9 +76,12 @@
 												placeholder="Start Time"/>
 											<TimePicker id="idTimeOut" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
 												placeholder="End Time"/>
+											<Title text="Enter comments(if any)" />
+											<Input id="idCommentsInput" value="" required="false" class="sapUiTinyMargin" />
 											<ObjectNumber id="idHoursLogged" class="sapUiTinyMargin sapMObjectNumberLarge" number="" state="Success" unit=""/>
 											<!-- <Button text="Save this entry" press="saveTimeEntry" class="sapUiTinyMargin" type="Accept"/> -->
 											<!-- <m:Button type="Accept" icon="sap-icon://add" iconFirst="true" text="Add to this day" class="sapUiTinyMargin"/> -->											
+											
 											<Bar>
 												<contentRight>
 													<Button id="saveTimeEntryButton" text="Save this entry" icon="sap-icon://save" type="Accept" press="saveTimeEntry" enabled="false"/>
@@ -146,6 +149,11 @@
 															<Text text="Hours" />
 															<footer><Text text="{path: '/Entries', formatter: '.formatter.calcHours'} H"/></footer>
 														</Column>
+														<Column
+															hAlign="End" demandPopin="false" minScreenWidth="Tablet">
+															<Text text="Comments" wrapping="true"/>
+															
+														</Column>
 													</columns>
 													<items>
 														<ColumnListItem>
@@ -172,7 +180,9 @@
 																<ObjectNumber
 																	number="{path : 'TotalTimeWorkedInHours', formatter: '.formatter.roundHours'}"
 																	unit="H"
-																	state="Success"/>					
+																	state="Success"/>	
+																<Text
+																	text="{Comments}" /> 						
 															</cells>
 														</ColumnListItem>
 													</items>
@@ -196,6 +206,19 @@
 							<Button text="Add Category" type="Accept" icon="sap-icon://add" iconFirst="true" press="addCategory"/>							
 						</OverflowToolbar>
 					 </footer> -->
+					 	<!-- <footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<SegmentedButton selectedKey="small">
+					<items>
+						<SegmentedButtonItem text="Small" key="small" />
+						<SegmentedButtonItem text="Medium" />
+						<SegmentedButtonItem text="Large" />
+					</items>
+				</SegmentedButton>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</footer> -->
 				</Page>
 			</pages>
 		</App>
