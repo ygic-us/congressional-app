@@ -110,7 +110,9 @@
 											<HBox>
 												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																							
 												<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+												
 											</HBox>
+											<!-- <Button text="PNS" type="Reject" press="pns" class="sapUiTinyMarginBegin" icon="sap-icon://notify"/>												 -->
 												<!-- <core:HTML content='&lt;div id=&quot;pie&quot;/&gt;'> 
 			</core:HTML>-->			
 												<Table width="100%" id="idProductsTable"	inset="true" items="{ path: '/Entries', sorter: {
