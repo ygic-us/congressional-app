@@ -152,7 +152,7 @@
 															<footer><Text text="{path: '/Entries', formatter: '.formatter.calcHours'} H"/></footer>
 														</Column>
 														<Column
-															hAlign="End" demandPopin="false" minScreenWidth="Tablet">
+															hAlign="Begin" demandPopin="false" minScreenWidth="Tablet">
 															<Text text="Comments" wrapping="true"/>
 															
 														</Column>
