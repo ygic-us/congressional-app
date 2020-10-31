@@ -41,7 +41,10 @@
 													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/> -->
 
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true" columns="2">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" buttons="{Categories>/Categories}" columns="3">
+												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" selected="{Categories>Selected}" />
+											</RadioButtonGroup>
+											<!-- <RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true" columns="2">
 												<buttons>
 													<RadioButton groupName="GroupA" id="academic" text="Academic" />
 													<RadioButton groupName="GroupA" id="maintenance" text="Maintenance"/>
@@ -49,7 +52,7 @@
 													<RadioButton groupName="GroupA" id="other" text="Other"/>
 												</buttons>
 												
-											</RadioButtonGroup>
+											</RadioButtonGroup> -->
 											
 											<!-- <ComboBox class="sapUiTinyMargin" id="idCategoryName2" selectedKey="null" items="{Categories>/Categories}">
 												<core:Item text="{Categories>Name}" key="{Categories>Key}"/>											
@@ -131,13 +134,13 @@
 															<Text text="Date" />
 														</Column> -->
 														<Column
-															width="12em"
+															
 															>
 															<Text text="Category" />
 														</Column>
 														<Column
 															minScreenWidth="Tablet"
-															demandPopin="true" width="20em">
+															demandPopin="true">
 															<Text text="Start &amp; End Times" />
 														</Column>
 														<!-- <Column
@@ -192,12 +195,38 @@
 										</VBox>
 										
 									</IconTabFilter>
-									<!-- <IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
+									<IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
 									<VBox class="sapUiTinyMargin">									
-										<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
-										<Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												
+										<Button text="Delete all reports" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->
+											<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">
+												<headerToolbar>
+			<OverflowToolbar style="Clear">
+				<Title text="Categories" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://add" text="Add New" type="Accept" press="addCategory"/>				
+			</OverflowToolbar>
+		</headerToolbar>
+												<content>
+													<List
+		id="list"
+		mode="Delete"
+		delete="handleDeleteCategory"
+		enableBusyIndicator="true"		
+		growing="true"
+		items="{
+			path: 'Categories>/Categories'
+		}" >
+		<DisplayListItem
+					label="{Categories>Name}"
+					value="" />		
+	</List>
+												</content>
+											</Panel>
 									</VBox>
-									</IconTabFilter> -->
+									</IconTabFilter>
 								</items>
 							</IconTabBar>
 						</VBox>

@@ -31,12 +31,38 @@ sap.ui.define([
 			{				
 				var emptyModel = { "Entries" : []};				
 				oStorage.put("myLocalData",JSON.stringify(emptyModel));				
-				var categoriesModel = {"Categories":[{"Name": "Sleep", "Key":"Sleep"}]}
+				var categoriesModel = {"Categories":[
+					{"Name": "Sleep", "Key":"Sleep"},
+					{"Name": "Study", "Key":"Study"},
+					{"Name": "Internet", "Key":"Internet"},
+					{"Name": "Entertainment", "Key":"Entertainment"},
+					{"Name": "Sport", "Key":"Sport"},
+					{"Name": "Transport", "Key":"Transport"},
+					{"Name": "Eat", "Key":"Eat"},					
+					{"Name": "Read", "Key":"Read"},
+					{"Name": "Work", "Key":"Work"},
+					{"Name": "Shop", "Key":"Shop"},					
+					{"Name": "Housework", "Key":"Housework"},
+					{"Name": "Cinema", "Key":"Cinema"},
+					{"Name": "Walk", "Key":"Walk"},										
+					{"Name": "Help", "Key":"Help"}					
+				]}
 				oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
 				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
 				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
 			}
 			this.loadEntries();
+			
+		},
+		handleDeleteCategory: function(oEvent)
+		{
+			var oitem = oEvent.getParameter("listItem").getBindingContext("Categories").getObject()
+			var array = oEvent.getSource().getModel("Categories").getData().Categories;
+			array.splice( array.indexOf( oitem), 1 );
+			var categoryModel = this.getView().getModel("Categories");
+			oStorage.put("myLocalData2",JSON.stringify(categoryModel.getData()))
+			MessageBox.information("Saved your changes");
+			this.getView().getModel("Categories").refresh()
 			
 		},
 		addCategory : function(oEvent)
@@ -116,14 +142,19 @@ sap.ui.define([
 			}
 			
 		},
-		deleteReportsPress : function()
+		deleteReportsPress : function(oEvent)
 		{			
 			oStorage.clear();			
 			var emptyModel = { "Entries" : []};				
-			oStorage.put("myLocalData",JSON.stringify(emptyModel));
+			oStorage.put("myLocalData",JSON.stringify(emptyModel));			
+			MessageBox.success("Cleared all the report entries");
+			this.loadEntries();
+		},
+		deleteCategoriesPress : function(oEvent)
+		{
 			var categoriesModel = {"Categories":[]}
 			oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
-			MessageBox.success("Cleared all the entries");
+			MessageBox.success("All the categories");
 			this.loadEntries();
 		},
 		downloadReportsPress : function(oEvt)
@@ -220,7 +251,8 @@ sap.ui.define([
 			var categoriesModel = new JSONModel();
 			categoriesModel.setJSON(oStorage.get("myLocalData2"))			
 			oView.setModel(categoriesModel,"Categories");
-			categoriesModel.refresh(true)		
+			categoriesModel.refresh(true)	
+			this.byId("idCategoryName").setSelectedIndex(null); 						
 			
 			if(oStorage.get("myLocalData3") != null)
 			{
@@ -230,7 +262,7 @@ sap.ui.define([
 				const diffTime = Math.abs(dateToday - lastBackedUp);
 				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 				this.byId("idlastBackedUpText").setText("Last backed up: " + settings.Settings.LastBackedUp.substring(0,19))
-				if(diffDays > 5)
+				if(diffDays > 1)
 				{
 					this.byId("idbackUpVBox").setVisible(true);					
 				}
@@ -243,9 +275,7 @@ sap.ui.define([
 				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
 				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
 				this.byId("idbackUpVBox").setVisible(false);
-			}
-			
-
+			}			
 		},
 
 		lineItemEndTimeChanged: function(oEvent)
@@ -487,8 +517,10 @@ sap.ui.define([
 							{
 								
 								var entry = { 	"Date": new Date().toLocaleDateString(), 
-												"StartTime" : new Date(startTime).toLocaleTimeString(), 
+												"StartTime" : new Date(startTime).toLocaleTimeString(),
+												"StartTimeISOFormat" : new Date(startTime).toISOString(), 
 												"EndTime":endTime.toLocaleTimeString(), 
+												"EndTimeISOFormat":endTime.toISOString(), 
 												"Category": title, 
 												"TotalTimeWorkedInSeconds": totalTimeWorked,
 												"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),

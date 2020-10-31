@@ -1,0 +1,19 @@
+{
+	
+	"DefaultCategories" : [{"Name": "Sleep", "Key":"Sleep"},
+		{"Name": "Study", "Key":"Study"},
+		{"Name": "Internet", "Key":"Internet"},
+		{"Name": "Entertainment", "Key":"Entertainment"},
+		{"Name": "Sport", "Key":"Sport"},
+		{"Name": "Transport", "Key":"Transport"},
+		{"Name": "Eat", "Key":"Eat"},					
+		{"Name": "Read", "Key":"Read"},
+		{"Name": "Work", "Key":"Work"},
+		{"Name": "Shop", "Key":"Shop"},					
+		{"Name": "Housework", "Key":"Housework"},
+		{"Name": "Cinema", "Key":"Cinema"},
+		{"Name": "Walk", "Key":"Walk"},										
+		{"Name": "Help", "Key":"Help"}],
+	"DefaultSettings": {}
+}
+
