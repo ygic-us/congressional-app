@@ -35,24 +35,12 @@
 												<Button text="Backup now to your device" type="Ghost" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://save"/>	
 											</VBox>
 										
-											<Title text="Choose an activity/category to start" id="rbGroupTitle" class="sapUiTinyMarginTop"/>
-											<!-- <RadioButton groupName="GroupA" text="Academic" select="rbselectedTemp"/>
-													<RadioButton groupName="GroupA" text="Maintenance" select="rbselectedTemp"/>
-													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>
-													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/> -->
+											<Title text="Choose an activity/category to start" id="rbGroupTitle" class="sapUiTinyMarginTop"/>											
 
 											<RadioButtonGroup id="idCategoryName" select="categoryChanged" buttons="{Categories>/Categories}" columns="3">
 												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" selected="{Categories>Selected}" />
 											</RadioButtonGroup>
-											<!-- <RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true" columns="2">
-												<buttons>
-													<RadioButton groupName="GroupA" id="academic" text="Academic" />
-													<RadioButton groupName="GroupA" id="maintenance" text="Maintenance"/>
-													<RadioButton groupName="GroupA" id="building" text="Building Use" />
-													<RadioButton groupName="GroupA" id="other" text="Other"/>
-												</buttons>
-												
-											</RadioButtonGroup> -->
+											
 											
 											<!-- <ComboBox class="sapUiTinyMargin" id="idCategoryName2" selectedKey="null" items="{Categories>/Categories}">
 												<core:Item text="{Categories>Name}" key="{Categories>Key}"/>											
@@ -68,12 +56,15 @@
 											<Title text="Choose a day"/>
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
 											<Title text="Choose a category"/>
-											<RadioButtonGroup id="categoryIdManualEntry" selectedIndex="1" columns="2" class="sapUiTinyMargin">
+											<RadioButtonGroup id="categoryIdManualEntry" select="categoryChanged" buttons="{Categories>/Categories}" columns="3">
+												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" selected="{Categories>Selected}" />
+											</RadioButtonGroup>
+											<!-- <RadioButtonGroup id="categoryIdManualEntry" selectedIndex="1" columns="2" class="sapUiTinyMargin">
 												<RadioButton id="academic1" text="Academic" />
 												<RadioButton id="maintenance2" text="Maintenance"/>
 												<RadioButton id="building2" text="Building Use" />
 												<RadioButton id="other2" text="Other" />
-											</RadioButtonGroup>											
+											</RadioButtonGroup>											 -->
 											<Title text="Enter time"/>
 											<TimePicker id="idTimeIn" valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" change="handleTimeChange" class="sapUiTinyMargin"
 												placeholder="Start Time"/>
@@ -100,7 +91,7 @@
 				<GenericTag text="Last 30 days" design="Full" status="Success"  >
 					<ObjectNumber id="hoursLastMonth" state="Information" emphasized="true" number="0" numberUnit="Hours"/>
 				</GenericTag> -->
-											<Title text="Choose an option" wrapping="true"/>
+											<!-- <Title text="Choose an option" wrapping="true"/> -->
 											<!-- <DateRangeSelection
 																id="DRS3"
 																showFooter="true"
@@ -109,12 +100,13 @@
 												<Button text="Last 1 week" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Month" class="sapUiTinyMargin"/>
 												<Button text="Last 1 Year" class="sapUiTinyMargin"/>
-											</HBox>	 -->
-											<HBox>
-												<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																							
-												<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
-												
-											</HBox>
+											</HBox>	 -->											
+											<Button text="Show time spent on each category" icon="sap-icon://show" press="graph" class="sapUiTinyMarginBegin"/>
+											<VBox>
+											<core:HTML content='&lt;div id=&quot;my_dataviz&quot;/&gt;'> 
+											</core:HTML>
+											<VBox id="idSummaryHours"/>
+											</VBox>
 											<!-- <Button text="PNS" type="Reject" press="pns" class="sapUiTinyMarginBegin" icon="sap-icon://notify"/>												 -->
 												<!-- <core:HTML content='&lt;div id=&quot;pie&quot;/&gt;'> 
 			</core:HTML>-->			
@@ -196,9 +188,9 @@
 										
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
-									<VBox class="sapUiTinyMargin">									
-										<Button text="Delete all reports" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
-										<Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+									<VBox class="sapUiTinyMargin">	
+									<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																																									
+										<!-- <Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												 -->
 										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->
 											<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
@@ -229,7 +221,9 @@
 											<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">
 												<headerToolbar>
 			<OverflowToolbar style="Clear">
-				<Title text="Entries" />								
+				<Title text="Logged activity list" />
+				<ToolbarSpacer/>
+				<Button text="Delete all entries" type="Reject" press="deleteReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>																				
 			</OverflowToolbar>
 		</headerToolbar>
 												<content>
