@@ -61,12 +61,25 @@ sap.ui.define([
 			array.splice( array.indexOf( oitem), 1 );
 			var categoryModel = this.getView().getModel("Categories");
 			oStorage.put("myLocalData2",JSON.stringify(categoryModel.getData()))
-			MessageBox.information("Saved your changes");
+			//MessageBox.information("Saved your changes");
+			MessageToast.show("Deleted the category");
+
 			this.getView().getModel("Categories").refresh()
 			
 		},
+		handleDeleteReportEntry : function(oEvent)
+		{
+			var oitem = oEvent.getParameter("listItem").getBindingContext().getObject()
+			var array = oEvent.getSource().getModel().getData().Entries;
+			array.splice( array.indexOf( oitem), 1 );
+			var entriesModel = this.getView().getModel();
+			oStorage.put("myLocalData",JSON.stringify(entriesModel.getData()))
+			MessageBox.information("Saved your changes");
+			this.getView().getModel().refresh()
+		},
 		addCategory : function(oEvent)
 		{
+			var viewInstance = this.getView();
 			var dialog = new sap.m.Dialog({
 				title: 'Create Category',
 				type: 'Message',
@@ -89,7 +102,12 @@ sap.ui.define([
 					enabled: false,
 					press: function () {
 						var sText = sap.ui.getCore().byId('submitDialogTextarea').getValue();
-						MessageToast.show('Note is: ' + sText);
+						var entry = {"Name":sText,"Key":sText}
+						var categoryModel = viewInstance.getModel("Categories");
+						categoryModel.getData().Categories.push(entry);
+						oStorage.put("myLocalData2",JSON.stringify(categoryModel.getData()))						
+						viewInstance.getModel("Categories").refresh()
+						MessageToast.show("New category created");
 
 						dialog.close();
 					}

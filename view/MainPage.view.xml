@@ -201,7 +201,7 @@
 										<Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->
-											<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">
+											<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
 												<headerToolbar>
 			<OverflowToolbar style="Clear">
 				<Title text="Categories" />
@@ -222,6 +222,28 @@
 		<DisplayListItem
 					label="{Categories>Name}"
 					value="" />		
+	</List>
+												</content>
+											</Panel>
+
+											<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">
+												<headerToolbar>
+			<OverflowToolbar style="Clear">
+				<Title text="Entries" />								
+			</OverflowToolbar>
+		</headerToolbar>
+												<content>
+													<List		
+		mode="Delete"
+		delete="handleDeleteReportEntry"
+		enableBusyIndicator="true"		
+		growing="true"
+		items="{
+			path: '/Entries'
+		}" >
+		<StandardListItem
+					title="{Date} "
+					description="{StartTime} to {EndTime}" info="{Category}" infoState="Success" icon="sap-icon://activity-2"/>		
 	</List>
 												</content>
 											</Panel>
