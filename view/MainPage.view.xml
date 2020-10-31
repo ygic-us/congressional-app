@@ -137,7 +137,7 @@
 														</Column>
 														<Column
 															minScreenWidth="Tablet"
-															demandPopin="true">
+															demandPopin="true" width="20em">
 															<Text text="Start &amp; End Times" />
 														</Column>
 														<!-- <Column

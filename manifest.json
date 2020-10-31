@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "ygic.timelogger.personal.YGIC-Personal-Timelogger",
+		"id": "generic.timelogger",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -12,7 +12,7 @@
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+			"version": "1.82.2"
 		}
 	},
 
@@ -36,7 +36,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "ygic.timelogger.personal.YGIC-Personal-Timelogger.view.MainPage",
+			"viewName": "generic.timelogger.view.MainPage",
 			"type": "XML",
 			"async": true,
 			"id": "MainPage"
@@ -57,7 +57,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "ygic.timelogger.personal.YGIC-Personal-Timelogger.i18n.i18n"
+					"bundleName": "generic.timelogger.i18n.i18n"
 				}
 			}
 		},
@@ -71,7 +71,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "ygic.timelogger.personal.YGIC-Personal-Timelogger.view",
+				"viewPath": "generic.timelogger.view",
 				"controlAggregation": "pages",
 				"controlId": "app",
 				"clearControlAggregation": false

@@ -437,7 +437,7 @@ sap.ui.define([
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
-			if(idStopWatchVBox.getItems().length > 0)
+			if(idStopWatchVBox.getItems().length > 5)
 			{
 				MessageBox.information("You can have only one timer at a time.");
 				return; 
@@ -468,44 +468,45 @@ sap.ui.define([
 							return 'Started at ' + new Date(t).toTimeString().substring(0,5)
 						}}, 
 						design:"Bold"}).addStyleClass('greenColorFont'),
-					// new sap.m.Switch({ type:'AcceptReject', state:true,
-					// 	change: function (oEvent) {									
-					// 		clearInterval(timer);
-					// 		timer = null;
-					// 		var m = this.getModel();
-					// 		m.setProperty('/start', false);
-					// 		var title = m.getProperty('/title');
-					// 		var startTime = m.getProperty('/startedAt');							
-					// 		var endTime = new Date();							
-					// 		var diff = endTime-startTime	
-					// 		var totalTimeWorked = Math.floor(diff/1000);
-					// 		if(totalTimeWorked < 60)						
-					// 		{
-					// 			MessageBox.information("Too little time to log.");
-					// 		}
-					// 		else
-					// 		{
+					new sap.m.Switch({ type:'AcceptReject', state:true,
+						change: function (oEvent) {									
+							clearInterval(timer);
+							timer = null;
+							var m = this.getModel();
+							m.setProperty('/start', false);
+							var title = m.getProperty('/title');
+							var startTime = m.getProperty('/startedAt');							
+							var endTime = new Date();							
+							var diff = endTime-startTime	
+							var totalTimeWorked = Math.floor(diff/1000);
+							if(totalTimeWorked < 60)						
+							{
+								MessageBox.information("Too little time to log.");
+							}
+							else
+							{
 								
-					// 			var entry = { 	"Date": new Date().toLocaleDateString(), 
-					// 							"StartTime" : new Date(startTime).toLocaleTimeString(), 
-					// 							"EndTime":endTime.toLocaleTimeString(), 
-					// 							"Category": title, 
-					// 							"TotalTimeWorkedInSeconds": totalTimeWorked,
-					// 							"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
-					// 							"TimeOfEntry" : new Date().toISOString(),
-					// 							"IsManualEntry": false,
-					// 							"Comments": oEvent.getSource().getParent().getItems()[4].getValue()
-					// 						}
-					// 			oEntriesModel.getData().Entries.push(entry);
-					// 			oEntriesModel.refresh(true);
-					// 			oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
-					// 		}
+								var entry = { 	"Date": new Date().toLocaleDateString(), 
+												"StartTime" : new Date(startTime).toLocaleTimeString(), 
+												"EndTime":endTime.toLocaleTimeString(), 
+												"Category": title, 
+												"TotalTimeWorkedInSeconds": totalTimeWorked,
+												"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
+												"TimeOfEntry" : new Date().toISOString(),
+												"IsManualEntry": false,
+												"Comments": oEvent.getSource().getParent().getItems()[4].getContent()[0].getValue()
+											}
+								oEntriesModel.getData().Entries.push(entry);
+								oEntriesModel.refresh(true);
+								oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
+							}
 							
-					// 		//oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent());
-					// 		oEvent.getSource().getParent().getParent().getParent().removeAllItems()
-					// 		categoryComboBox.setSelectedIndex(null); 
-					// 	}
-					// }),
+							var currentTimer = oEvent.getSource().getParent().getParent()
+							//oEvent.getSource().getParent().getParent().getParent().removeItem(currentTimer);
+							oEvent.getSource().getParent().getParent().getParent().removeAllItems()
+							categoryComboBox.setSelectedIndex(null); 
+						}
+					}),
 					new sap.m.HBox({
 						items: [
 							new sap.m.Text({
@@ -540,49 +541,50 @@ sap.ui.define([
 							}).addStyleClass('timerFace')													
 						]
 					}),					
-					new sap.m.Button({
-						icon: 'sap-icon://stop',
-						tooltip: 'Stop and save the timer',
-						text:'Stop and Save',
-						type:'Reject',						
-						enabled: '{/start}',
-						press: function (oEvent) {									
-							clearInterval(timer);
-							timer = null;
-							var m = this.getModel();
-							m.setProperty('/start', false);
-							var title = m.getProperty('/title');
-							var startTime = m.getProperty('/startedAt');							
-							var endTime = new Date();							
-							var diff = endTime-startTime	
-							var totalTimeWorked = Math.floor(diff/1000);
-							if(totalTimeWorked < 60)						
-							{
-								MessageBox.information("Too little time to log.");
-							}
-							else
-							{
+					// new sap.m.Button({
+					// 	icon: 'sap-icon://stop',
+					// 	tooltip: 'Stop and save the timer',
+					// 	text:'Stop and Save',
+					// 	type:'Reject',						
+					// 	enabled: '{/start}',
+					// 	press: function (oEvent) {									
+					// 		clearInterval(timer);
+					// 		timer = null;
+					// 		var m = this.getModel();
+					// 		m.setProperty('/start', false);
+					// 		var title = m.getProperty('/title');
+					// 		var startTime = m.getProperty('/startedAt');							
+					// 		var endTime = new Date();							
+					// 		var diff = endTime-startTime	
+					// 		var totalTimeWorked = Math.floor(diff/1000);
+					// 		if(totalTimeWorked < 60)						
+					// 		{
+					// 			MessageBox.information("Too little time to log.");
+					// 		}
+					// 		else
+					// 		{
 								
-								var entry = { 	"Date": new Date().toLocaleDateString(), 
-												"StartTime" : new Date(startTime).toLocaleTimeString(), 
-												"EndTime":endTime.toLocaleTimeString(), 
-												"Category": title, 
-												"TotalTimeWorkedInSeconds": totalTimeWorked,
-												"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
-												"TimeOfEntry" : new Date().toISOString(),
-												"IsManualEntry": false,
-												"Comments": oEvent.getSource().getParent().getItems()[4].getValue()
-											}
-								oEntriesModel.getData().Entries.push(entry);
-								oEntriesModel.refresh(true);
-								oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
-							}
+					// 			var entry = { 	"Date": new Date().toLocaleDateString(), 
+					// 							"StartTime" : new Date(startTime).toLocaleTimeString(), 
+					// 							"EndTime":endTime.toLocaleTimeString(), 
+					// 							"Category": title, 
+					// 							"TotalTimeWorkedInSeconds": totalTimeWorked,
+					// 							"TotalTimeWorkedInHours": (totalTimeWorked/3600).toFixed(2),
+					// 							"TimeOfEntry" : new Date().toISOString(),
+					// 							"IsManualEntry": false,
+					// 							"Comments": oEvent.getSource().getParent().getItems()[4].getValue()
+					// 						}
+					// 			oEntriesModel.getData().Entries.push(entry);
+					// 			oEntriesModel.refresh(true);
+					// 			oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
+					// 		}
 							
-							oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent());
-							categoryComboBox.setSelectedIndex(null); 
-						}
-					}).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass'),					
-					new sap.m.Input({placeholder:'comments if any',value:'', visible: false}).addStyleClass("sapUiTinyMarginTop")
+					// 		oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent());
+					// 		categoryComboBox.setSelectedIndex(null); 
+					// 	}
+					// }).addStyleClass("sapUiTinyMargin").addStyleClass('timerButton').addStyleClass('roundClass'),					
+					new sap.m.Panel({ expanded: false, expandable: true,content: [new sap.m.Input({placeholder:'Comments if any',value:'', visible: true})]})					
+					
 					
 				]
 			}).addStyleClass("sapUiTinyMargin")

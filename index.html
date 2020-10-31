@@ -4,44 +4,44 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="apple-mobile-web-app-title" content="Volunteer">
-	<title>YGIC Volunteer</title>
+	<meta name="apple-mobile-web-app-title" content="Time Logger">
+	<title>Time Logger</title>
 	<link rel="manifest" crossorigin="use-credentials" href="manifest.webmanifest"/>
 	<!-- All Apple stuff -->
-	<link rel="apple-touch-icon" href="/volunteer/images/icon.png">
-	<link href="/generic-timelogger/images/iphone5_splash.png"
+	<link rel="apple-touch-icon" href="/images/icon.png">
+	<link href="/images/iphone5_splash.png"
 		media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/iphone6_splash.png"
+	<link href="/images/iphone6_splash.png"
 		media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/iphoneplus_splash.png"
+	<link href="/images/iphoneplus_splash.png"
 		media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/iphonex_splash.png"
+	<link href="/images/iphonex_splash.png"
 		media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/iphonexr_splash.png"
+	<link href="/images/iphonexr_splash.png"
 		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/iphonexsmax_splash.png"
+	<link href="/images/iphonexsmax_splash.png"
 		media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/ipad_splash.png"
+	<link href="/images/ipad_splash.png"
 		media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/ipadpro1_splash.png"
+	<link href="/images/ipadpro1_splash.png"
 		media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/ipadpro3_splash.png"
+	<link href="/images/ipadpro3_splash.png"
 		media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
-	<link href="/generic-timelogger/images/ipadpro2_splash.png"
+	<link href="/images/ipadpro2_splash.png"
 		media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
 		rel="apple-touch-startup-image" />
 
-	<link rel="icon" type="image/png" sizes="32x32" href="/generic-timelogger/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/generic-timelogger/images/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 	<!-- https://openui5.hana.ondemand.com -->
 	<script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
 		data-sap-ui-theme="sap_fiori_3"
@@ -57,7 +57,7 @@
 	<script>
 		
 		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('/generic-timelogger/service-worker.js')
+			navigator.serviceWorker.register('/service-worker.js')
 				.then(function (registration) {
 					console.log('Registration successful, scope is:', registration.scope);
 				})
@@ -78,7 +78,7 @@
 			</div>
 		  </nav> -->
 	<div data-sap-ui-component data-name="generic.timelogger" data-id="container"
-		data-settings='{"id" : "YGIC-Personal-Timelogger"}'></div>
+		data-settings='{"id" : "Timelogger"}'></div>
 </body>
 
 </html>

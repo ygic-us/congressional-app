@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"ygic/timelogger/personal/YGIC-Personal-Timelogger/model/models"
+	"generic/timelogger/model/models"
 ], function (UIComponent, Device, models) {
 	"use strict";
 

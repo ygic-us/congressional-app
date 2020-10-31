@@ -4,20 +4,20 @@
     "description": "Simple voluteer timesheet app for YGIC",
     "icons": [
       {
-        "src": "/volunteer/images/icon192.png",
+        "src": "/images/icon192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/volunteer/images/icon512.png",
+        "src": "/images/icon512.png",
         "type": "image/png",
         "sizes": "512x512"
       }
     ],
-    "start_url": "/volunteer/",
+    "start_url": "/",
     "background_color": "#FFFFFF",
     "display": "standalone",
-    "scope": "/volunteer/",
+    "scope": "/",
     "theme_color": "#FFFFFF",
     "shortcuts": [
       
