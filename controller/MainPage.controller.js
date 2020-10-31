@@ -501,9 +501,10 @@ sap.ui.define([
 								oStorage.put("myLocalData",JSON.stringify(oEntriesModel.getData()))
 							}
 							
-							var currentTimer = oEvent.getSource().getParent().getParent()
+							//var currentTimer = oEvent.getSource().getParent().getParent()
+							oEvent.getSource().getParent().getParent().getParent().removeItem(oEvent.getSource().getParent().getParent())
 							//oEvent.getSource().getParent().getParent().getParent().removeItem(currentTimer);
-							oEvent.getSource().getParent().getParent().getParent().removeAllItems()
+							//oEvent.getSource().getParent().getParent().getParent().removeAllItems()
 							categoryComboBox.setSelectedIndex(null); 
 						}
 					}),

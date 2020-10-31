@@ -41,7 +41,7 @@
 													<RadioButton groupName="GroupA" text="Building Use" select="rbselectedTemp"/>
 													<RadioButton groupName="GroupA" text="Other" select="rbselectedTemp"/> -->
 
-											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true">
+											<RadioButtonGroup id="idCategoryName" select="categoryChanged" visible="true" columns="2">
 												<buttons>
 													<RadioButton groupName="GroupA" id="academic" text="Academic" />
 													<RadioButton groupName="GroupA" id="maintenance" text="Maintenance"/>
