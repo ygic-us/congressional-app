@@ -16,7 +16,7 @@ sap.ui.define([
 	"use strict";		
 	var oStorage;
 	var oEntriesModel;
-	return Controller.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.controller.MainPage", {		
+	return Controller.extend("generic.timelogger.controller.MainPage", {		
 		formatter: Formatter,
 
 		onInit: function () {
@@ -301,7 +301,7 @@ sap.ui.define([
 		},
 
 		initSampleProductsModel: function () {
-			var sPath = jQuery.sap.getModulePath("ygic.timelogger.personal.YGIC-Personal-Timelogger", "/model/entries.json");
+			var sPath = jQuery.sap.getModulePath("generic.timelogger", "/model/entries.json");
 			var oData = jQuery.sap.sjax({
 				url: sPath,
 				dataType: "json"

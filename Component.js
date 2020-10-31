@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models) {
 	"use strict";
 
-	return UIComponent.extend("ygic.timelogger.personal.YGIC-Personal-Timelogger.Component", {
+	return UIComponent.extend("generic.timelogger.Component", {
 
 		metadata: {
 			manifest: "json"
