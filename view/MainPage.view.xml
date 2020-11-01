@@ -57,7 +57,7 @@
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
 											<Title text="Choose a category"/>
 											<RadioButtonGroup id="categoryIdManualEntry" buttons="{Categories>/Categories}" columns="3">
-												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" selected="{Categories>Selected}" />
+												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" />
 											</RadioButtonGroup>
 											<!-- <RadioButtonGroup id="categoryIdManualEntry" selectedIndex="1" columns="2" class="sapUiTinyMargin">
 												<RadioButton id="academic1" text="Academic" />

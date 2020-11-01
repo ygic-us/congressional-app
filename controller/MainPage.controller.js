@@ -59,7 +59,10 @@ sap.ui.define([
 		},
 		multipleTimersSwitchPress : function(oEvent)
 		{
-			oEvent.getSource()
+			var settingsModel = this.getView().getModel("Settings").getData();
+			settingsModel.Settings.AllowMultipleTimers = oEvent.getSource().getState()			
+			oStorage.put("myLocalData3",JSON.stringify(settingsModel));
+			this.getView().getModel("Settings").refresh(true);
 		},
 		handleDeleteCategory: function(oEvent)
 		{
@@ -593,9 +596,10 @@ sap.ui.define([
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
-			if(idStopWatchVBox.getItems().length > 0)
+			var multipleTimersAllowed = this.getView().getModel("Settings").getData().Settings.AllowMultipleTimers;
+			if(!multipleTimersAllowed)
 			{
-				MessageBox.information("You can have only one timer at a time.");
+				MessageBox.information("Multiple timers have not enabled. Please configure in the app settings.");
 				return; 
 			}
 			//var idCategoryName = this.byId("idCategoryName").getSelectedItem().getText()
