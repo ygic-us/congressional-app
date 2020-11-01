@@ -1,5 +1,5 @@
 {
-	
+	"DefaultEntries":[],
 	"DefaultCategories" : [{"Name": "Sleep", "Key":"Sleep"},
 		{"Name": "Study", "Key":"Study"},
 		{"Name": "Internet", "Key":"Internet"},

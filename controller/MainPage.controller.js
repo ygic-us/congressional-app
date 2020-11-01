@@ -28,7 +28,8 @@ sap.ui.define([
 				//MessageBox.information("Data from local ");	
 			}
 			else
-			{				
+			{	
+							
 				var emptyModel = { "Entries" : []};				
 				oStorage.put("myLocalData",JSON.stringify(emptyModel));				
 				var categoriesModel = {"Categories":[
@@ -579,7 +580,7 @@ sap.ui.define([
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
-			if(idStopWatchVBox.getItems().length > 5)
+			if(idStopWatchVBox.getItems().length > 0)
 			{
 				MessageBox.information("You can have only one timer at a time.");
 				return; 
