@@ -598,7 +598,8 @@ sap.ui.define([
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
 			var categoryComboBox = this.byId("idCategoryName");
 			var multipleTimersAllowed = this.getView().getModel("Settings").getData().Settings.AllowMultipleTimers;
-			if(!multipleTimersAllowed)
+			
+			if(!multipleTimersAllowed && idStopWatchVBox.getItems().length >= 1)
 			{
 				MessageBox.information("Multiple timers have not enabled. Please configure in the app settings.");
 				return; 
