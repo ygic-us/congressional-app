@@ -56,7 +56,7 @@
 											<Title text="Choose a day"/>
 											<u:CalendarDateInterval id="calendar" width="70%" class="sapUiTinyMargin" select="handleCalendarSelect"/>
 											<Title text="Choose a category"/>
-											<RadioButtonGroup id="categoryIdManualEntry" select="categoryChanged" buttons="{Categories>/Categories}" columns="3">
+											<RadioButtonGroup id="categoryIdManualEntry" buttons="{Categories>/Categories}" columns="3">
 												<RadioButton text="{Categories>Name}" groupName="sapMRbDefaultGroup" selected="{Categories>Selected}" />
 											</RadioButtonGroup>
 											<!-- <RadioButtonGroup id="categoryIdManualEntry" selectedIndex="1" columns="2" class="sapUiTinyMargin">
@@ -188,8 +188,19 @@
 										
 									</IconTabFilter>
 									<IconTabFilter icon="sap-icon://settings" key="ssettings" iconColor="Negative" text="Settings">
-									<VBox class="sapUiTinyMargin">	
-									<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																																									
+									<VBox class="sapUiTinyMargin">
+										
+									<Toolbar>
+										<HBox alignItems="Center" class="sapUiTinyMarginBegin">
+											<Label text="Allow multiple timers" design="Bold"/>
+											<Switch state="{Settings>/Settings/AllowMultipleTimers}" class="sapUiTinyMarginBegin" change="multipleTimersSwitchPress"/>				
+										</HBox>
+										
+									</Toolbar>
+									
+																			
+											<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																																											
+									
 										<!-- <Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												 -->
 										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->

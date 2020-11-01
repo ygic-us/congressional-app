@@ -31,7 +31,8 @@ sap.ui.define([
 			{	
 							
 				var emptyModel = { "Entries" : []};				
-				oStorage.put("myLocalData",JSON.stringify(emptyModel));				
+				oStorage.put("myLocalData",JSON.stringify(emptyModel));		
+
 				var categoriesModel = {"Categories":[
 					{"Name": "Sleep", "Key":"Sleep"},
 					{"Name": "Study", "Key":"Study"},
@@ -49,11 +50,16 @@ sap.ui.define([
 					{"Name": "Help", "Key":"Help"}					
 				]}
 				oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
-				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
+
+				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString(), "AllowMultipleTimers": true}}
 				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
 			}
 			this.loadEntries();
 			
+		},
+		multipleTimersSwitchPress : function(oEvent)
+		{
+			oEvent.getSource()
 		},
 		handleDeleteCategory: function(oEvent)
 		{
@@ -163,7 +169,8 @@ sap.ui.define([
 		},
 		resetEverythingPress : function(oEvent)
 		{
-			oStorage.clear()
+			oStorage.clear();
+			MessageBox.information("You might have to close and re-open the app.");
 		},
 		graph: function(oEvent)
 		{
@@ -369,6 +376,7 @@ sap.ui.define([
 			
 			if(oStorage.get("myLocalData3") != null)
 			{
+
 				var settings =  JSON.parse(oStorage.get("myLocalData3"));
 				var lastBackedUp = new Date(settings.Settings.LastBackedUp);
 				var dateToday = new Date();
@@ -382,12 +390,17 @@ sap.ui.define([
 				else
 				{
 					this.byId("idbackUpVBox").setVisible(false);				
-				}								
+				}				
+				
+				var settingsoModel = new JSONModel();
+				settingsoModel.setJSON(oStorage.get("myLocalData3"))			
+				oView.setModel(settingsoModel,"Settings");
+				settingsoModel.refresh(true)	
+
 			}
 			else{
-				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString()}}
-				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
-				this.byId("idbackUpVBox").setVisible(false);
+				
+				
 			}			
 		},
 
