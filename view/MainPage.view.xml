@@ -164,9 +164,9 @@
 																 
 																<HBox>
 																<TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
-																							placeholder="Started At" value="{StartTime}" enabled="false" />
+																							placeholder="Started At" value="{StartTime}" enabled="{Settings>/Settings/CanEditStartTime}" />
 																<TimePicker valueFormat="hh:mm a" displayFormat="hh:mm a" required="true" class="sapUiTinyMargin"
-																							placeholder="Ended At" value="{EndTime}" enabled="true" change="lineItemEndTimeChanged"/>
+																							placeholder="Ended At" value="{EndTime}" enabled="{Settings>/Settings/CanEditEndTime}" change="lineItemEndTimeChanged"/>
 																<!-- <Text
 																	text="{StartTime} t" /> 
 																<Text
@@ -204,27 +204,35 @@
 										<!-- <Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												 -->
 										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
 										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->
-											<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+											<Panel expandable="true" expanded="false" width="auto" class="sapUiResponsiveMargin">
 												<headerToolbar>
 			<OverflowToolbar style="Clear">
 				<Title text="Categories" />
 				<ToolbarSpacer />
+				<Button icon="sap-icon://edit" type="Accept" press="handleEditCategory"/>	
 				<Button icon="sap-icon://add" text="Add New" type="Accept" press="addCategory"/>				
+
 			</OverflowToolbar>
 		</headerToolbar>
 												<content>
 													<List
 		id="list"
-		mode="Delete"
+		mode="Delete"		
 		delete="handleDeleteCategory"
 		enableBusyIndicator="true"		
 		growing="true"
 		items="{
 			path: 'Categories>/Categories'
 		}" >
-		<DisplayListItem
+		<CustomListItem type="Active">
+			
+				<Input value="{Categories>Name}" enabled="{Settings>/Settings/EditCategoryName}" liveChange="handleCategoryNameLiveChange"/>
+				
+			
+		</CustomListItem>
+		<!-- <DisplayListItem
 					label="{Categories>Name}"
-					value="" />		
+					value="" />		 -->
 	</List>
 												</content>
 											</Panel>
@@ -258,12 +266,7 @@
 							</IconTabBar>
 						</VBox>
 					</content>
-								<!-- <footer>
-						<OverflowToolbar>
-							<ToolbarSpacer/>
-							<Button text="Add Category" type="Accept" icon="sap-icon://add" iconFirst="true" press="addCategory"/>							
-						</OverflowToolbar>
-					 </footer> -->
+								
 					 	<!-- <footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

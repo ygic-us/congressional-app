@@ -51,7 +51,7 @@ sap.ui.define([
 				]}
 				oStorage.put("myLocalData2",JSON.stringify(categoriesModel));
 
-				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString(), "AllowMultipleTimers": true}}
+				var settingsModel = {"Settings":{"LastBackedUp": new Date().toISOString(), "DateInstalled": new Date().toISOString(), "AllowMultipleTimers": false, "EditCategoryName": false, "CanEditStartTime": false, "CanEditEndTime": true}}
 				oStorage.put("myLocalData3",JSON.stringify(settingsModel));
 			}
 			this.loadEntries();
@@ -593,6 +593,28 @@ sap.ui.define([
 			this.byId("idCategoryName").fireSelect();
 
 		},
+		handleEditCategory: function(oEvent)
+		{
+			var settingsModel = this.getView().getModel("Settings").getData();
+			if(settingsModel.Settings.EditCategoryName)
+			{
+				settingsModel.Settings.EditCategoryName= false;
+			} 
+			else
+			{
+				settingsModel.Settings.EditCategoryName = true;
+			}
+			this.getView().getModel("Settings").refresh(true);
+			
+		},
+		
+		handleCategoryNameLiveChange : function(oEvent)
+		{
+			var categoryModel = this.getView().getModel("Categories");
+			oStorage.put("myLocalData2",JSON.stringify(categoryModel.getData()))
+			MessageToast.show("Category updated successfully");
+			this.getView().getModel("Categories").refresh()
+		},		
 		categoryChanged: function (oEvent) {
 			
 			var idStopWatchVBox = this.byId("idStopWatchVBox");
