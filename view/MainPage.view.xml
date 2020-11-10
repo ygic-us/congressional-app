@@ -198,13 +198,12 @@
 										
 									</Toolbar>
 									
-																			
 											<Button text="Download all entries" type="Accept" press="downloadReportsPress" class="sapUiTinyMarginBegin" icon="sap-icon://download"/>																																											
 									
 										<!-- <Button text="Reset categories to defaults" type="Reject" press="deleteCategoriesPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												 -->
-										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>												
+										<Button text="Reset everything to defaults" type="Reject" press="resetEverythingPress" class="sapUiTinyMarginBegin" icon="sap-icon://delete"/>																															
 										<!-- <Button text="Check for updates" type="Accept" press="checkUpdatesPress" class="sapUiTinyMarginBegin" icon="sap-icon://new"/>												 -->
-											<Panel expandable="true" expanded="false" width="auto" class="sapUiResponsiveMargin">
+											<Panel expandable="true" expanded="false" width="auto" >
 												<headerToolbar>
 			<OverflowToolbar style="Clear">
 				<Title text="Categories" />
@@ -237,7 +236,7 @@
 												</content>
 											</Panel>
 
-											<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">
+											<Panel expandable="true" width="auto">
 												<headerToolbar>
 			<OverflowToolbar style="Clear">
 				<Title text="Logged activity list" />
