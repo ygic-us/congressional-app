@@ -1,19 +1,15 @@
 {
 	"DefaultEntries":[],
-	"DefaultCategories" : [{"Name": "Sleep", "Key":"Sleep"},
-		{"Name": "Study", "Key":"Study"},
-		{"Name": "Internet", "Key":"Internet"},
-		{"Name": "Entertainment", "Key":"Entertainment"},
-		{"Name": "Sport", "Key":"Sport"},
-		{"Name": "Transport", "Key":"Transport"},
-		{"Name": "Eat", "Key":"Eat"},					
-		{"Name": "Read", "Key":"Read"},
-		{"Name": "Work", "Key":"Work"},
-		{"Name": "Shop", "Key":"Shop"},					
-		{"Name": "Housework", "Key":"Housework"},
-		{"Name": "Cinema", "Key":"Cinema"},
-		{"Name": "Walk", "Key":"Walk"},										
-		{"Name": "Help", "Key":"Help"}],
+	"DefaultCategories" : [
+		{"Name": "Phy. Fitness 1", "Key":"Study"},
+		{"Name": "Phy. Fitness 2", "Key":"Internet"},
+		{"Name": "Volunteering 1", "Key":"Entertainment"},		
+		{"Name": "Volunteering 2", "Key":"Transport"},
+		{"Name": "Volunteering 3", "Key":"Eat"},					
+		{"Name": "Voluteering 4", "Key":"Read"},
+		{"Name": "Personal Developement 1", "Key":"Work"},
+		{"Name": "Personal Developement 2", "Key":"Shop"}					
+		]],
 	"DefaultSettings": {}
 }
 
